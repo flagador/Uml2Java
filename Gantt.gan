@@ -1,12 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?><project name="Untitled Gantt Project" company="" webLink="http://" view-date="2019-04-11" view-index="0" gantt-divider-location="300" resource-divider-location="300" version="2.8.10" locale="fr_FR">
+<?xml version="1.0" encoding="UTF-8"?><project name="Untitled Gantt Project" company="" webLink="http://" view-date="2019-04-08" view-index="0" gantt-divider-location="180" resource-divider-location="300" version="2.8.10" locale="fr">
     <description/>
-    <view zooming-state="default:2" id="gantt-chart">
-        <field id="tpd3" name="Nom" width="167" order="0"/>
-        <field id="tpd4" name="Date de début" width="65" order="1"/>
-        <field id="tpd5" name="Date de fin" width="64" order="2"/>
-        <option id="color.recent">
-            <![CDATA[#000000 #009900 #0000cc #ff6633]]>
-        </option>
+    <view zooming-state="default:6" id="gantt-chart">
+        <field id="tpd3" name="Nom" width="94" order="0"/>
+        <field id="tpd4" name="Date de début" width="41" order="1"/>
+        <field id="tpd5" name="Date de fin" width="41" order="2"/>
+        <option id="color.recent"><![CDATA[#000000 #009900 #0000cc #ff6633]]></option>
     </view>
     <view id="resource-table">
         <field id="0" name="Nom" width="210" order="0"/>
@@ -36,34 +34,34 @@
             <taskproperty id="tpd8" name="coordinator" type="default" valuetype="text"/>
             <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
         </taskproperties>
-        <task id="0" name="L1" color="#8cb6ce" meeting="false" start="2019-04-11" duration="1" complete="0" thirdDate="2019-04-11" thirdDate-constraint="0" expand="true">
+        <task id="0" name="L1" color="#8cb6ce" meeting="false" start="2019-04-15" duration="3" complete="0" thirdDate="2019-04-11" thirdDate-constraint="0" expand="true">
             <depend id="3" type="2" difference="0" hardness="Strong"/>
         </task>
-        <task id="3" name="L2" color="#8cb6ce" meeting="false" start="2019-04-12" duration="1" complete="0" thirdDate="2019-04-11" thirdDate-constraint="0" expand="true">
+        <task id="3" name="L2" color="#8cb6ce" meeting="false" start="2019-04-18" duration="3" complete="0" thirdDate="2019-04-11" thirdDate-constraint="0" expand="true">
             <depend id="6" type="2" difference="0" hardness="Strong"/>
         </task>
-        <task id="6" name="L3" color="#009900" meeting="false" start="2019-04-15" duration="1" complete="0" thirdDate="2019-04-11" thirdDate-constraint="0" expand="true">
+        <task id="6" name="L3" color="#009900" meeting="false" start="2019-04-23" duration="3" complete="0" thirdDate="2019-04-11" thirdDate-constraint="0" expand="true">
             <depend id="10" type="2" difference="0" hardness="Strong"/>
         </task>
-        <task id="10" name="L4" color="#009900" meeting="false" start="2019-04-16" duration="1" complete="0" thirdDate="2019-04-11" thirdDate-constraint="0" expand="true"/>
-        <task id="13" name="L5" color="#ff6633" meeting="false" start="2019-04-11" duration="1" complete="0" thirdDate="2019-04-11" thirdDate-constraint="0" expand="true">
+        <task id="10" name="L4" color="#009900" meeting="false" start="2019-04-26" duration="3" complete="0" thirdDate="2019-04-11" thirdDate-constraint="0" expand="true"/>
+        <task id="13" name="L5" color="#ff6633" meeting="false" start="2019-04-15" duration="5" complete="0" thirdDate="2019-04-11" thirdDate-constraint="0" expand="true">
             <depend id="15" type="2" difference="0" hardness="Strong"/>
         </task>
-        <task id="15" name="L6" color="#0000cc" meeting="false" start="2019-04-12" duration="1" complete="0" thirdDate="2019-04-11" thirdDate-constraint="0" expand="true">
+        <task id="15" name="L6" color="#0000cc" meeting="false" start="2019-04-22" duration="5" complete="0" thirdDate="2019-04-11" thirdDate-constraint="0" expand="true">
             <depend id="16" type="2" difference="0" hardness="Strong"/>
         </task>
-        <task id="16" name="L7" color="#8cb6ce" meeting="false" start="2019-04-15" duration="1" complete="0" thirdDate="2019-04-11" thirdDate-constraint="0" expand="true"/>
-        <task id="17" name="L8" color="#ff6633" meeting="false" start="2019-04-11" duration="1" complete="0" thirdDate="2019-04-11" thirdDate-constraint="0" expand="true">
+        <task id="16" name="L7" color="#8cb6ce" meeting="false" start="2019-04-29" duration="5" complete="0" thirdDate="2019-04-11" thirdDate-constraint="0" expand="true"/>
+        <task id="17" name="L8" color="#ff6633" meeting="false" start="2019-04-22" duration="10" complete="0" thirdDate="2019-04-11" thirdDate-constraint="0" expand="true">
             <depend id="18" type="2" difference="0" hardness="Strong"/>
         </task>
-        <task id="18" name="L9" color="#0000cc" meeting="false" start="2019-04-12" duration="1" complete="0" thirdDate="2019-04-11" thirdDate-constraint="0" expand="true">
+        <task id="18" name="L9" color="#0000cc" meeting="false" start="2019-05-06" duration="10" complete="0" thirdDate="2019-04-11" thirdDate-constraint="0" expand="true">
             <depend id="19" type="2" difference="0" hardness="Strong"/>
         </task>
-        <task id="19" name="L10" color="#009900" meeting="false" start="2019-04-15" duration="1" complete="0" thirdDate="2019-04-11" thirdDate-constraint="0" expand="true"/>
-        <task id="20" name="L11" color="#8cb6ce" meeting="false" start="2019-04-11" duration="1" complete="0" thirdDate="2019-04-11" thirdDate-constraint="0" expand="true">
+        <task id="19" name="L10" color="#009900" meeting="false" start="2019-05-20" duration="10" complete="0" thirdDate="2019-04-11" thirdDate-constraint="0" expand="true"/>
+        <task id="20" name="L11" color="#8cb6ce" meeting="false" start="2019-05-06" duration="10" complete="0" thirdDate="2019-04-11" thirdDate-constraint="0" expand="true">
             <depend id="21" type="2" difference="0" hardness="Strong"/>
         </task>
-        <task id="21" name="L12" color="#000000" meeting="false" start="2019-04-12" duration="1" complete="0" thirdDate="2019-04-11" thirdDate-constraint="0" expand="true"/>
+        <task id="21" name="L12" color="#000000" meeting="false" start="2019-05-20" duration="20" complete="0" thirdDate="2019-04-11" thirdDate-constraint="0" expand="true"/>
     </tasks>
     <resources>
         <resource id="0" name="Julian" function="Default:0" contacts="" phone=""/>
