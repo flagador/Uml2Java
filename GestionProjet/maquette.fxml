@@ -111,12 +111,15 @@
                                              <children>
                                                 <ToolBar prefHeight="40.0" prefWidth="200.0">
                                                   <items>
-                                                    <Button mnemonicParsing="false" text="Button" />
+                                                    <Button mnemonicParsing="false" text="Class" />
+                                                      <Button mnemonicParsing="false" text="Interface" />
+                                                      <Button mnemonicParsing="false" text="Généralisation" />
+                                                      <Button mnemonicParsing="false" text="Extend / Integer" />
                                                   </items>
                                                 </ToolBar>
                                                 <ScrollPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
                                                   <content>
-                                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+                                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="417.0" prefWidth="528.0" />
                                                   </content>
                                                 </ScrollPane>
                                              </children>
