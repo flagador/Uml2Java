@@ -1,0 +1,9 @@
+/*.button, .button:hover, .button:armed, .button:focused{
+    -fx-background-color: red;
+}*/
+
+#Classes {
+    -fx-border-style: solid;
+    -fx-border-width: 2;
+    -fx-border-color: black;
+}
