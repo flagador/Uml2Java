@@ -1,0 +1,16 @@
+window_sizes 649 971 147 496 839 80
+cleanlooks_style
+diagrams
+  active  classdiagram_ref 128040 // uml
+    496 841 90 A4 0 0
+end
+show_stereotypes
+selected 
+package_ref 129 // Projet
+open
+  class_ref 128808 // Relation
+  class_ref 128936 // Classe
+  class_ref 129064 // Attribut
+  class_ref 129320 // Methode
+end
+end
