@@ -1,4 +1,4 @@
-package creation_Classe;
+package model;
 
 public class AttributU2J {
 

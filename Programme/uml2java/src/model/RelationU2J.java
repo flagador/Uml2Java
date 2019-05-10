@@ -1,4 +1,4 @@
-package creation_Classe;
+package model;
 
 public class RelationU2J {
 	private String MultiplicityIn;

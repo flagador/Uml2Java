@@ -1,4 +1,4 @@
-package creation_Classe;
+package model;
 
 import java.util.ArrayList;
 
