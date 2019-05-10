@@ -2,43 +2,46 @@ package model;
 
 public class Attribut {
 
-	private String nom;
-	private String type;
-	private String visibilite;
-	
-	public Attribut(String nom, String type, String visibilite) {
-		super();
-		this.nom = nom;
-		this.type = type;
-		this.visibilite = visibilite;
-	}
+    private String nom;
+    private String type;
+    private String visibilite;
 
-	public String getNom() {
-		return nom;
-	}
+    /**
+     * Represent un attribut d'une classe UML
+     *
+     * @param nom
+     * @param type
+     * @param visibilite
+     */
+    public Attribut(String nom, String type, String visibilite) {
+        super();
+        this.nom = nom;
+        this.type = type;
+        this.visibilite = visibilite;
+    }
 
-	public void setNom(String nom) {
-		this.nom = nom;
-	}
+    public String getNom() {
+        return nom;
+    }
 
-	public String getType() {
-		return type;
-	}
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
 
-	public void setType(String type) {
-		this.type = type;
-	}
+    public String getType() {
+        return type;
+    }
 
-	public String getVisibilite() {
-		return visibilite;
-	}
+    public void setType(String type) {
+        this.type = type;
+    }
 
-	public void setVisibilite(String visibilite) {
-		this.visibilite = visibilite;
-	}
+    public String getVisibilite() {
+        return visibilite;
+    }
 
+    public void setVisibilite(String visibilite) {
+        this.visibilite = visibilite;
+    }
 
-	
-	
-	
 }
