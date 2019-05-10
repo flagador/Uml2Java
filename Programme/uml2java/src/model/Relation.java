@@ -1,12 +1,12 @@
 package model;
 
-public class RelationU2J {
+public class Relation {
 	private String MultiplicityIn;
 	private String MultiplicityOut;
 	private String type;
 	private String libelle;
 	
-	public RelationU2J(String multiplicityIn, String multiplicityOut, String type, String libelle) {
+	public Relation(String multiplicityIn, String multiplicityOut, String type, String libelle) {
 		super();
 		MultiplicityIn = multiplicityIn;
 		MultiplicityOut = multiplicityOut;

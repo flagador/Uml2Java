@@ -1,15 +1,16 @@
 package model;
 
-public class MethodeU2J {
+public class Attribut {
 
 	private String nom;
-	private String visibilite;
 	private String type;
+	private String visibilite;
 	
-	public MethodeU2J(String nom, String visibilite, String type) {
+	public Attribut(String nom, String type, String visibilite) {
+		super();
 		this.nom = nom;
-		this.visibilite = visibilite;
 		this.type = type;
+		this.visibilite = visibilite;
 	}
 
 	public String getNom() {
@@ -20,6 +21,14 @@ public class MethodeU2J {
 		this.nom = nom;
 	}
 
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
 	public String getVisibilite() {
 		return visibilite;
 	}
@@ -28,13 +37,7 @@ public class MethodeU2J {
 		this.visibilite = visibilite;
 	}
 
-	public String getType() {
-		return type;
-	}
 
-	public void setType(String type) {
-		this.type = type;
-	}
 	
 	
 	
