@@ -1,5 +1,3 @@
-package PACKAGE_NAME;
-
 import javafx.application.Application;
 import javafx.stage.Stage;
 
