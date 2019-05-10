@@ -1,5 +1,6 @@
 import javafx.application.Application;
 import javafx.stage.Stage;
+import view.Uml2Java;
 
 public class Start extends Application {
 
@@ -9,6 +10,8 @@ public class Start extends Application {
 
     @Override
     public void start(Stage primaryStage) {
+        primaryStage = new Uml2Java("Uml2Java");
+        primaryStage.show();
 
     }
 }
