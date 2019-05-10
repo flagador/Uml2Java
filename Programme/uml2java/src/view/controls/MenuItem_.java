@@ -17,7 +17,7 @@ public class MenuItem_ extends MenuItem {
     /**
      * Constructs a MenuItem and sets the display text with the specified text
      *
-     * @param text
+     * @param text text to display
      * @see #setText
      */
     public MenuItem_(String text) {
@@ -28,8 +28,8 @@ public class MenuItem_ extends MenuItem {
      * Constructs a MenuItem and sets the display text with the specified text
      * and KeyShortcut
      *
-     * @param text
-     * @param keyCodeCombination
+     * @param text text to display
+     * @param keyCodeCombination key shortcuts
      * @see #setText
      * @see #setAccelerator(KeyCombination)
      */

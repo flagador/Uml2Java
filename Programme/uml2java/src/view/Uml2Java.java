@@ -23,7 +23,8 @@ public class Uml2Java extends Stage {
     private MenuItem_ aide     = new MenuItem_("Aide");
     private MenuItem_ aPropos  = new MenuItem_("A Propos");
 
-    private TreeView treeView = new TreeView();
+    private TreeView<String> treeView       = new TreeView<>();
+    private TreeItem<String> treeItemHeader = new TreeItem<>("Project");
 
     private TabPane tabPane = new TabPane();
     private Tab     umlTab  = new Tab("UML");
@@ -39,6 +40,9 @@ public class Uml2Java extends Stage {
     private ContextMenu contextMenu = new ContextMenu();
 
     private Button nouvClasse = new Button("Classe");
+    private Button nouvAsso = new Button("Association");
+    private Button nouvGene = new Button("Generalisation");
+    private Button nouvDep = new Button("Dependence");
 
     public Uml2Java(String title) {
         this.setTitle(title);
@@ -62,7 +66,8 @@ public class Uml2Java extends Stage {
         umlTab.setContextMenu(contextMenu);
         rootUml.setTop(umlToolBar);
         rootUml.setCenter(umlPane);
-        umlToolBar.getItems().addAll(nouvClasse);
+        umlToolBar.getItems().addAll(nouvClasse, nouvAsso, nouvGene, nouvDep);
+        treeView.setRoot(treeItemHeader);
 
         javaTab.setContent(javaCode);
 
