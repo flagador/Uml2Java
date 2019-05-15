@@ -132,7 +132,7 @@ public class Classe {
 	
 	public static void main(String args[]) {
 		Classe Voiture = new Classe("Voiture");
-		Attribut Roue = new Attribut("douzepouces","Roue","public");
+		Attribut Roue = new Attribut("douzepouces","Roue","private");
 		Voiture.ajoutAttribut(Roue);
 		System.out.println(Voiture.traductionJava()+"\n}");		
 	}
