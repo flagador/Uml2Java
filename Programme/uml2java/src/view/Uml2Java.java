@@ -48,7 +48,8 @@ public class Uml2Java extends Stage {
         this.setTitle(title);
 
         Scene scene = new Scene(init(), 800, 700);
-        // initEvents();
+
+        initEvents();
         this.setScene(scene);
     }
 
