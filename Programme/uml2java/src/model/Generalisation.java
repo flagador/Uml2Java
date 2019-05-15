@@ -27,6 +27,17 @@ public class Generalisation extends Relation {
 	public void setEnfant(Classe enfant) {
 		this.enfant = enfant;
 	}
+	
+	
+	public String traductionJava() {
+		
+		String generalisation = "";
+		
+		generalisation = enfant.getNom() + " Extends " + parent.getNom();
+		
+		return generalisation;
+		
+	}
 
 	
 	
