@@ -77,7 +77,7 @@ public class Uml2Java extends Stage {
         return root;
     }
 
-    /*
+
     private void initEvents() {
         nouvClasse.setOnMouseClicked(e -> {
             Classe classe = new Classe("test");

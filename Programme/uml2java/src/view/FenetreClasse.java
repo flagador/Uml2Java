@@ -33,6 +33,10 @@ public class FenetreClasse extends Stage {
     private Button confirmer = new Button("Confirmer");
     private Button annuler   = new Button("Annuler");
 
+    /**
+     * Constructeur
+     * @param classe
+     */
     public FenetreClasse(Classe classe) {
         this.setTitle("Classe");
         this.setResizable(false);
