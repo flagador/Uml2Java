@@ -78,8 +78,40 @@ public class Classe {
 		methodes.add(m);
 		
 	}
+	
+	
+	public void ajoutRelation(Relation r) {
+		
+		relations.add(r);
+		
+	}
+	
+	
+	// Méthode supprime
+	
+	public void suprAttribut(Attribut a) {
+		
+		attributs.remove(a);
+		
+	}
+	
+	
+	public void suprMethode(Methode m) {
+		
+		methodes.remove(m);
+		
+	}
+	
+
+	public void suprRelation(Relation r) {
+		
+		relations.remove(r);
+		
+	}
 
 
+	
+	// trad
 
 	public String traductionJava() {
 		String trad;
