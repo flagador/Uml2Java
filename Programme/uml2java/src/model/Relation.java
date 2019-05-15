@@ -2,7 +2,6 @@ package model;
 
 public abstract class Relation {
     private String type;
-    private String libelle;
 
     /**
      * Represente une relation UML
@@ -12,9 +11,8 @@ public abstract class Relation {
      * @param type
      * @param libelle
      */
-    public Relation(String type, String libelle) {
+    public Relation(String type) {
         this.type = type;
-        this.libelle = libelle;
     }
 
     public String getType() {
@@ -25,14 +23,7 @@ public abstract class Relation {
         this.type = type;
     }
 
-    public String getLibelle() {
-        return libelle;
-    }
 
-    public void setLibelle(String libelle) {
-        this.libelle = libelle;
-    }
-    
     
 
 }
