@@ -9,6 +9,8 @@ public class Classe {
     private ArrayList<Methode>  methodes;
     private ArrayList<Relation> relations;
     
+    private ArrayList<ClassProperty> properties;
+    
     public Classe(String nom) {
         super();
         this.nom = nom;
@@ -60,8 +62,18 @@ public class Classe {
 
 	public String traductionJava() {
 		String trad;
-		String entete = "public class "+this.nom+" {\\r\\n";
-		return trad;
+		String entete = "";
+		String attributsJava = "";
+		
+	/*	for (int i = 0; i < properties.size(); i++) {
+			if(properties.get(i) == ClassProperty.ABSTRACT)
+				entete += ClassProperty.ABSTRACT.javaText();
+		} */
+		 entete += " class "+this.nom+" {\\r\\n";
+		for (int i = 0; i < this.attributs.size(); i++) {
+			attributsJava += this.attributs.get(i).getVisibilite() +" "+ this.attributs.get(i).getNom();
+		}
+		return 0;
 	}
 
     
