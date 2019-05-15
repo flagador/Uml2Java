@@ -7,6 +7,8 @@ import javafx.scene.input.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import model.Classe;
+import view.controls.Classe_;
 import view.controls.MenuItem_;
 
 public class Uml2Java extends Stage {
@@ -82,7 +84,7 @@ public class Uml2Java extends Stage {
     private void initEvents() {
         nouvClasse.setOnMouseClicked(e -> {
             Classe classe = new Classe("test");
-            ClassesView classesView = new ClassesView(classe);
+            FenetreClasse classesView = new FenetreClasse(classe);
             classesView.showAndWait();
 
             Classe_ classe_ = new Classe_(classe);
@@ -93,12 +95,12 @@ public class Uml2Java extends Stage {
 
             classe_.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 2) {
-                    ClassesView edit = new ClassesView(classe);
+                    FenetreClasse edit = new FenetreClasse(classe);
                     edit.showAndWait();
                 }
             });
 
         });
-     */
+    }
 }
 
