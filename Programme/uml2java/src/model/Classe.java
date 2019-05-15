@@ -116,18 +116,25 @@ public class Classe {
 	public String traductionJava() {
 		String trad="";
 		String entete = "";
+		String attributsJava = "";
 		
 	/*	for (int i = 0; i < properties.size(); i++) {
 			if(properties.get(i) == ClassProperty.ABSTRACT)
 				entete += ClassProperty.ABSTRACT.javaText();
 		} */
-		 entete += " class "+this.nom+" {\\r\\n";
-		return null;
+		 entete += "Public class "+this.nom+" {\r\n";
+		 for (int i = 0; i < this.attributs.size(); i++) {
+			 attributsJava += this.getAttributs().get(i).toJava();
+		 }
+		 trad += entete+" "+attributsJava;
+		return trad;
 	}
 	
 	public static void main(String args[]) {
 		Classe Voiture = new Classe("Voiture");
-		Attribut Roue = new Attribut("Roue","")
+		Attribut Roue = new Attribut("douzepouces","Roue","public");
+		Voiture.ajoutAttribut(Roue);
+		System.out.println(Voiture.traductionJava()+"\n}");		
 	}
 
 }

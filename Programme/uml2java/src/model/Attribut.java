@@ -43,11 +43,8 @@ public class Attribut {
     public void setVisibilite(String visibilite) {
         this.visibilite = visibilite;
     }
-    public String traductionJava() {
-    	String attributsJava = "";
-    	for (int i = 0; i < this.attributs.size(); i++) {
-			attributsJava += this.attributs.get(i).getVisibilite() +" "+ this.attributs.get(i).getType() +" " + this.attributs.get(i).getNom() + ";\\r\\n";
-		}
-    	return attributsJava;
+    
+    public String toJava() {
+    	return getVisibilite() +" "+ getType() +" " +getNom() + ";";
     }
 }
