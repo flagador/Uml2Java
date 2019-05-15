@@ -27,8 +27,10 @@ public class Classe {
      * @param methodes
      * @param relations
      */
+    
 
     public String getNom() {
+
 		return nom;
 	}
 
@@ -60,6 +62,25 @@ public class Classe {
 		this.relations = relations;
 	}
 
+	
+	
+	// Méthodes ajout
+	
+	public void ajoutAttribut(Attribut a) {
+		
+		attributs.add(a);
+		
+	}
+	
+	
+	public void ajoutMethode(Methode m) {
+		
+		methodes.add(m);
+		
+	}
+
+
+
 	public String traductionJava() {
 		String trad;
 		String entete = "";
@@ -76,5 +97,4 @@ public class Classe {
 		return 0;
 	}
 
-    
 }
