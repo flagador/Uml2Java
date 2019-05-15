@@ -8,8 +8,16 @@ public class Classe {
     private ArrayList<Attribut> attributs;
     private ArrayList<Methode>  methodes;
     private ArrayList<Relation> relations;
-
-    /**
+    
+    public Classe(String nom) {
+        super();
+        this.nom = nom;
+        attributs = new ArrayList<Attribut>();
+        methodes = new ArrayList<Methode>();
+        relations = new ArrayList<Relation>();
+    }
+    
+	/**
      * Represente une classe UML
      *
      * @param nom
@@ -17,17 +25,10 @@ public class Classe {
      * @param methodes
      * @param relations
      */
-    public Classe(String nom) {
-    	
-        this.nom = nom;
-        this.attributs = new ArrayList <Attribut> ();
-        this.methodes = new ArrayList <Methode> ();
-        this.relations = new ArrayList <Relation> ();
-    }
+    
 
-    
-    
-	public String getNom() {
+    public String getNom() {
+
 		return nom;
 	}
 
@@ -58,6 +59,7 @@ public class Classe {
 	public void setRelations(ArrayList<Relation> relations) {
 		this.relations = relations;
 	}
+
 	
 	
 	// Méthodes ajout
@@ -73,6 +75,14 @@ public class Classe {
 		
 		methodes.add(m);
 		
+	}
+
+
+
+	public String traductionJava() {
+		String trad;
+		String entete = "public class "+this.nom+" {\\r\\n";
+		return trad;
 	}
 
 }
