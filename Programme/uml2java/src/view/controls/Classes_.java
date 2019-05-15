@@ -1,3 +1,8 @@
 package view.controls;
 
-public class Classes_ {}
+public class Classes_ {
+
+    public Classes_() {
+
+    }
+}
