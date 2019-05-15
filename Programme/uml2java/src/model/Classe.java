@@ -116,6 +116,7 @@ public class Classe {
 	public String traductionJava() {
 		String trad="";
 		String entete = "";
+		String constructeur = "";
 		String attributsJava = "";
 		
 	/*	for (int i = 0; i < properties.size(); i++) {
@@ -124,16 +125,28 @@ public class Classe {
 		} */
 		 entete += "Public class "+this.nom+" {\r\n";
 		 for (int i = 0; i < this.attributs.size(); i++) {
-			 attributsJava += this.getAttributs().get(i).toJava();
+			 attributsJava += this.getAttributs().get(i).toJava()+"\r\n";
 		 }
-		 trad += entete+" "+attributsJava;
+		 constructeur = "Public "+this.nom+"(";
+		 constructeur += this.getAttributs().get(0).getType()+" "+this.getAttributs().get(0).getNom();
+		 for (int i = 1; i < this.attributs.size(); i++) {
+			 constructeur += ", "+this.attributs.get(i).getType()+" "+this.attributs.get(i).getNom();
+		 }
+		 constructeur += "){\r\n "; 
+		 for (int i = 0; i < this.attributs.size(); i++) {
+			 constructeur += "this."+this.getAttributs().get(i).getNom()+" = "+this.getAttributs().get(i).getNom()+";\r\n";
+		 }
+		 constructeur += "}";
+		 trad += entete+" "+attributsJava+" "+constructeur;
 		return trad;
 	}
 	
 	public static void main(String args[]) {
 		Classe Voiture = new Classe("Voiture");
-		Attribut Roue = new Attribut("douzepouces","Roue","private");
-		Voiture.ajoutAttribut(Roue);
+		Attribut Moteur = new Attribut("Moteur","Composant","private");
+		Attribut Volant = new Attribut("Volant","Composant","private");
+		Voiture.ajoutAttribut(Moteur);
+		Voiture.ajoutAttribut(Volant);
 		System.out.println(Voiture.traductionJava()+"\n}");		
 	}
 
