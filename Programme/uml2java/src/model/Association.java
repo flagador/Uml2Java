@@ -40,6 +40,14 @@ public class Association extends Relation {
 		this.libelle = libelle;
 	}
 	
+    public String traductionJava() {
+    	String associationJava = "";
+    	
+    	
+    	
+    	
+    	return associationJava;
+    }
 
 	
 	
