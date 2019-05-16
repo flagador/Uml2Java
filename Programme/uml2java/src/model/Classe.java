@@ -149,5 +149,4 @@ public class Classe {
 		Voiture.ajoutAttribut(Volant);
 		System.out.println(Voiture.traductionJava()+"\n}");		
 	}
-
 }
