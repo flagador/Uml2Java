@@ -118,6 +118,7 @@ public class Classe {
 		String entete = "";
 		String constructeur = "";
 		String attributsJava = "";
+		String getSet = "";
 		
 	/*	for (int i = 0; i < properties.size(); i++) {
 			if(properties.get(i) == ClassProperty.ABSTRACT)
@@ -136,17 +137,22 @@ public class Classe {
 		 for (int i = 0; i < this.attributs.size(); i++) {
 			 constructeur += "this."+this.getAttributs().get(i).getNom()+" = "+this.getAttributs().get(i).getNom()+";\r\n";
 		 }
-		 constructeur += "}";
-		 trad += entete+" "+attributsJava+" "+constructeur;
+		 constructeur += "}\r\n";
+		 for (int i = 0; i < this.attributs.size(); i++) {
+				if (this.attributs.get(i).getVisibilite().toLowerCase().equals("private")) {
+					getSet += this.attributs.get(i).getterSetter();
+				}
+		 }
+		 trad += entete+attributsJava+constructeur+getSet;
 		return trad;
 	}
 	
 	public static void main(String args[]) {
 		Classe Voiture = new Classe("Voiture");
-		Attribut Moteur = new Attribut("Moteur","Composant","private");
-		Attribut Volant = new Attribut("Volant","Composant","private");
+		Attribut Moteur = new Attribut("puissanceMoteur","float","private");
+		Attribut Volant = new Attribut("couleur","String","private");
 		Voiture.ajoutAttribut(Moteur);
 		Voiture.ajoutAttribut(Volant);
-		System.out.println(Voiture.traductionJava()+"\n}");		
+		System.out.println(Voiture.traductionJava()+"\n}");
 	}
 }

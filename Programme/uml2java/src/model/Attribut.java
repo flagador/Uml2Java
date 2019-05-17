@@ -47,4 +47,11 @@ public class Attribut {
     public String toJava() {
     	return getVisibilite() +" "+ getType() +" " +getNom() + ";";
     }
+    
+    public String getterSetter() {
+    	String getset ="";
+    	getset+= "public "+getType()+" get"+getNom()+"() {\r\n	return "+getNom().toLowerCase()+";\r\n}\r\n";
+    	getset+= "public void set"+getNom()+"("+getType()+" "+getNom().toLowerCase()+") {\r\n	this."+getNom().toLowerCase()+" = "+getNom().toLowerCase()+";\r\n}\r\n";
+    	return getset;
+    }
 }
