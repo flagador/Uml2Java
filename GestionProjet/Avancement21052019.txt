@@ -1,0 +1,44 @@
+Suite au debut de la programmation de la traduction des classes en Java :
+
+- Input : 
+
+*CREATION CLASSE*
+Voiture
+
+*CREATION METHODE*
+Public float puissanceFiscale 
+return this.puissanceMoteur/10;
+
+*CREATION ATTRIBUTS* 
+private String couleur
+private float puissanceMoteur
+
+
+
+- Output :
+
+Public class Voiture {
+	private float puissanceMoteur;
+	private String couleur;
+	Public Voiture(float puissanceMoteur, String couleur){
+ 		this.puissanceMoteur = puissanceMoteur;
+		this.couleur = couleur;
+	}
+	public float getpuissanceMoteur() {
+		return puissancemoteur;
+	}
+	public void setpuissanceMoteur(float puissancemoteur) {
+		this.puissancemoteur = puissancemoteur;
+	}
+	public String getcouleur() {
+		return couleur;
+	}
+	public void setcouleur(String couleur) {
+		this.couleur = couleur;
+	}
+	Public float puissanceFiscale(float couleur, String couleur) {
+		return this.puissanceMoteur/10;
+	}
+}
+
+REMARQUE : l'indentation n'es pas encore prise en compte dans la traduction.
