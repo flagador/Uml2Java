@@ -153,11 +153,12 @@ public class Classe {
 	
 	public static void main(String args[]) {
 		Classe Voiture = new Classe("Voiture");
+		Methode puissanceFiscale = new Methode("puissanceFiscale","Public","float", Voiture.attributs, "return this.puissanceMoteur/10;");
 		Attribut Moteur = new Attribut("puissanceMoteur","float","private");
 		Attribut Volant = new Attribut("couleur","String","private");
 		Voiture.ajoutAttribut(Moteur);
 		Voiture.ajoutAttribut(Volant);
-		Methode moyenne = new Methode("moyenne","Public","float", Voiture.attributs);
+		Voiture.ajoutMethode(puissanceFiscale);
 		System.out.println(Voiture.traductionJava()+"\n}");
 	}
 }
