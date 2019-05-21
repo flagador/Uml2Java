@@ -119,6 +119,7 @@ public class Classe {
 		String constructeur = "";
 		String attributsJava = "";
 		String getSet = "";
+		String methodes = "";
 		
 	/*	for (int i = 0; i < properties.size(); i++) {
 			if(properties.get(i) == ClassProperty.ABSTRACT)
@@ -143,7 +144,10 @@ public class Classe {
 					getSet += this.attributs.get(i).getterSetter();
 				}
 		 }
-		 trad += entete+attributsJava+constructeur+getSet;
+		 for(int i = 0; i<this.methodes.size();i++) {
+			 methodes+=this.methodes.get(i).toJava();
+		 }
+		 trad += entete+attributsJava+constructeur+getSet+methodes;
 		return trad;
 	}
 	
@@ -153,6 +157,7 @@ public class Classe {
 		Attribut Volant = new Attribut("couleur","String","private");
 		Voiture.ajoutAttribut(Moteur);
 		Voiture.ajoutAttribut(Volant);
+		Methode moyenne = new Methode("moyenne","Public","float", Voiture.attributs);
 		System.out.println(Voiture.traductionJava()+"\n}");
 	}
 }
