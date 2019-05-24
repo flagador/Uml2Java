@@ -2,17 +2,38 @@ package model;
 
 public class Association extends Relation {
 
-
+	private Classe classeDep;
+	private Classe classeDest;
 	private String multipliciteIn;
 	private String multipliciteOut;
 	private String libelle;
 	
 	
-	public Association(String type, String multipliciteIn, String multipliciteOut, String libelle) {
+	public Association(Classe classeDep, Classe classeDest, String type, String multipliciteIn, String multipliciteOut, String libelle) {
 		super(type);
+		this.classeDep = classeDep;
+		this.classeDest = classeDest;
 		this.multipliciteIn = multipliciteIn;
 		this.multipliciteOut = multipliciteOut;
 		this.libelle = libelle;
+	}
+	public Classe getClasseDep() {
+		return classeDep;
+	}
+
+
+	public void setClasseDep(Classe classeDep) {
+		this.classeDep = classeDep;
+	}
+
+
+	public Classe getClasseDest() {
+		return classeDest;
+	}
+
+
+	public void setClasseDest(Classe classeDest) {
+		this.classeDest = classeDest;
 	}
 
 

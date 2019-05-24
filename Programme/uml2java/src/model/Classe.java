@@ -159,6 +159,6 @@ public class Classe {
 		Voiture.ajoutAttribut(Moteur);
 		Voiture.ajoutAttribut(Volant);
 		Voiture.ajoutMethode(puissanceFiscale);
-		System.out.println(Voiture.traductionJava()+"\n}");
+		System.out.println(Voiture.traductionJava()+"}");
 	}
 }
