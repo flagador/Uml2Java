@@ -102,5 +102,11 @@ public class Uml2Java extends Stage {
 
         });
     }
+
+    private void nouvelleClasse() {
+        //
+        Classe classe = new Classe();
+
+    }
 }
 
