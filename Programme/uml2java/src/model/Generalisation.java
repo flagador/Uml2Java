@@ -29,16 +29,23 @@ public class Generalisation extends Relation {
 	}
 	
 	
-	public String traductionJava() {
+	public String traductionSuperConstructeur() {
 		
 		String generalisation = "";
 		
-		generalisation = enfant.getNom() + " Extends " + parent.getNom();
-		
+		generalisation += "super(";
+		generalisation += this.parent.getAttributs().get(0).getType() + " " + this.parent.getAttributs().get(0).getNom();
+        for (int i = 1; i < this.parent.getAttributs().size(); i++) { 
+        	generalisation += ", " + this.parent.getAttributs().get(i).getType() + " " + this.parent.getAttributs().get(i).getNom();
+        }
+        generalisation+=");\r\n";
 		return generalisation;
-		
 	}
-
+	
+	/*public String traductionAttributsConstructeur() {
+		return generalisation;
+	}
+*/
 	
 	
 	
