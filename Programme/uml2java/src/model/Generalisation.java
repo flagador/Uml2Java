@@ -28,6 +28,11 @@ public class Generalisation extends Relation {
 		this.enfant = enfant;
 	}
 	
+	public String traductionDeclarationClasse() {
+		String generalisation = "";
+		generalisation += " extends "+this.parent.getNom();
+		return generalisation;
+	}
 	
 	public String traductionSuperConstructeur() {
 		

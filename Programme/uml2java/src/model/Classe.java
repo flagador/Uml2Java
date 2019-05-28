@@ -109,6 +109,11 @@ public class Classe {
 				entete += ClassProperty.ABSTRACT.javaText();
 		} */
         entete += "Public class " + this.nom + " {\r\n";
+        /*for (int i = 0; i < this.relations.size(); i++) {
+        	if (this.getRelations().get(i).getType().equals("Generalisation") || this.getRelations().get(i).) {
+        		entete += 
+        	}
+        }*/
         for (int i = 0; i < this.attributs.size(); i++) {
             attributsJava += this.getAttributs().get(i).toJava() + "\r\n";
         }
