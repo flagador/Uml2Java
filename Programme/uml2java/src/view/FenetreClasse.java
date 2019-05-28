@@ -23,13 +23,14 @@ public class FenetreClasse extends Stage {
     private Button           supprimerAttribu     = new Button("Supprimer");
 
     private VBox             vBoxMethodesClasse  = new VBox();
-    private Label            methodesLabel       = new Label("Attributs :");
+    private Label            methodesLabel       = new Label("Methodes :");
     private ListView<Object> methodesList        = new ListView<>();
     private HBox             hBoxBoutonsMethodes = new HBox();
     private Button           ajouterMethode      = new Button("Ajouter");
     private Button           modifierMethode     = new Button("Modifier");
     private Button           supprimerMethode    = new Button("Supprimer");
 
+    private ButtonBar buttonBar = new ButtonBar();
     private Button confirmer = new Button("Confirmer");
     private Button annuler   = new Button("Annuler");
 
@@ -45,6 +46,7 @@ public class FenetreClasse extends Stage {
 
         Scene scene = new Scene(init(), 500, 500);
         this.setScene(scene);
+        initEvents();
     }
 
     // Initialise les controls
@@ -59,9 +61,26 @@ public class FenetreClasse extends Stage {
         vBoxMethodesClasse.getChildren().addAll(methodesLabel, methodesList, hBoxBoutonsMethodes);
         hBoxBoutonsMethodes.getChildren().addAll(ajouterMethode, modifierMethode, supprimerMethode);
 
+        buttonBar.getButtons().addAll(confirmer, annuler);
+
         root.add(hBoxNomClasse, 0, 0);
         root.add(vBoxAttributsClasse, 0, 1);
         root.add(vBoxMethodesClasse, 1, 1);
+        root.add(buttonBar, 1, 2);
         return root;
+    }
+
+    private void initEvents() {
+        annuler.setOnAction(event -> {
+            annulerClasse();
+        });
+    }
+
+    private void ajouterClasse() {
+
+    }
+
+    private void annulerClasse() {
+        close();
     }
 }
