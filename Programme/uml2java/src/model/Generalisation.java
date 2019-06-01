@@ -9,7 +9,6 @@ public class Generalisation extends Relation {
 		super(type);
 		this.parent = parent;
 		this.enfant = enfant;
-		// TODO Auto-generated constructor stub
 	}
 
 	public Classe getParent() {

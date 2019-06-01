@@ -22,6 +22,17 @@ public abstract class Relation {
     public void setType(String type) {
         this.type = type;
     }
-    
+    public Classe getParent() {
+    	Classe parent = null;
+		return parent;
+	}
+    public Classe getEnfant() {
+    	Classe enfant = null;
+		return enfant;
+	}
+    public String traductionDeclarationClasse() {
+    	String generalisation = "";
+		return generalisation;
+	}
 
 }

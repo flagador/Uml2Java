@@ -108,17 +108,20 @@ public class Classe {
 			if(properties.get(i) == ClassProperty.ABSTRACT)
 				entete += ClassProperty.ABSTRACT.javaText();
 		} */
-        entete += "Public class " + this.nom + " {\r\n";
-        /*for (int i = 0; i < this.relations.size(); i++) {
-        	if (this.getRelations().get(i).getType().equals("Generalisation") || this.getRelations().get(i).) {
-        		entete += 
+        entete += "Public class " + this.nom;
+        for ( int i = 0; i <this.relations.size(); i++) {
+            System.out.println(this.getNom());
+        	if (this.relations.get(i).getType().equals("generalisation") && this.relations.get(i).getEnfant().getNom().equals(this.getNom())) {
+        		entete+=this.relations.get(i).traductionDeclarationClasse();
         	}
-        }*/
+        }
+        //entete de la classe fille ne fonctionne pas
+        entete += " {\r\n";
         for (int i = 0; i < this.attributs.size(); i++) {
             attributsJava += this.getAttributs().get(i).toJava() + "\r\n";
         }
         constructeur = "Public " + this.nom + "(";
-        constructeur += this.getAttributs().get(0).getType() + " " + this.getAttributs().get(0).getNom();
+
         for (int i = 1; i < this.attributs.size(); i++) {
             constructeur += ", " + this.attributs.get(i).getType() + " " + this.attributs.get(i).getNom();
         }
@@ -141,6 +144,9 @@ public class Classe {
 
     public static void main(String args[]) {
         Classe Voiture = new Classe("Voiture");
+        Classe Porsche911GT3RS = new Classe("Porsche911GT3RS");
+        Generalisation generalisation = new Generalisation("generalisation", Voiture, Porsche911GT3RS);
+        Voiture.relations.add(generalisation);
         Methode puissanceFiscale = new Methode("puissanceFiscale", "Public", "float", Voiture.attributs, "return this.puissanceMoteur/10;");
         Attribut Moteur = new Attribut("puissanceMoteur", "float", "private");
         Attribut Volant = new Attribut("couleur", "String", "private");
@@ -148,5 +154,6 @@ public class Classe {
         Voiture.ajoutAttribut(Volant);
         Voiture.ajoutMethode(puissanceFiscale);
         System.out.println(Voiture.traductionJava() + "}");
+        System.out.println(Porsche911GT3RS.traductionJava() + "}");
     }
 }
