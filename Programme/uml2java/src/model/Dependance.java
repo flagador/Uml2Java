@@ -4,6 +4,7 @@ public class Dependance extends Relation {
 	private Classe classeDep;
 	private Classe classeDest;
 	private String libelle;
+	
 
 	public Dependance(Classe classeDep, Classe classeDest ,String type, String libelle) {
 		super(type);

@@ -67,15 +67,12 @@ public class Methode {
     public String toJava() {
     	String trad = "";
     	trad+=this.visibilite+" "+this.type+" "+this.nom+"(";
-    	if (this.attributs.size()<=1) {
-    		trad+=this.attributs.get(0).getType()+" "+this.attributs.get(0).getNom();
-    	}
-    	else {
-    		trad+=this.attributs.get(0).getType()+" "+this.attributs.get(1).getNom();
-        	for (int i=1; i<this.attributs.size();i++) {
-        		trad+=", "+this.attributs.get(i).getType()+" "+this.attributs.get(i).getNom();
+        	for (int i=0; i<this.attributs.size();i++) {
+        		trad+=this.attributs.get(i).getType()+" "+this.attributs.get(i).getNom();
+        		if(i < this.attributs.size()-1) {
+        			trad+= ", ";
+        		}
         	}
-    	}
     	trad+=") {\r\n";
     	trad+=this.contenuMethode;
     	trad+="\r\n}\r\n";
