@@ -34,5 +34,14 @@ public abstract class Relation {
     	String generalisation = "";
 		return generalisation;
 	}
+    
+    public String traductionAttributsConstructeur() {
+    	String generalisation = "";
+		return generalisation;
+	}
+    public String traductionSuperConstructeur() {
+    	String generalisation = "";
+		return generalisation;
+	}
 
 }
