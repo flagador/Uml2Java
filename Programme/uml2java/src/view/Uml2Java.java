@@ -44,7 +44,7 @@ public class Uml2Java extends Stage {
     private Button nouvClasse = new Button("Classe");
     private Button nouvAsso = new Button("Association");
     private Button nouvGene = new Button("Generalisation");
-    private Button nouvDep = new Button("Dependence");
+    private Button nouvDep = new Button("Dependance");
 
     public Uml2Java(String title) {
         this.setTitle(title);
