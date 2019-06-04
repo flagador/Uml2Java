@@ -1,5 +1,7 @@
 package view;
 
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -17,31 +19,66 @@ public class FenetreAttribut extends Stage {
     private ComboBox<String> comboBoxType       = new ComboBox<>();
     private ComboBox<String> comboBoxVisibilite = new ComboBox<>();
 
-    private VBox labels  = new VBox();
-    private VBox valeurs = new VBox();
+    private HBox nom = new HBox();
+    private HBox type = new HBox();
+    private HBox visibilite = new HBox();
+    private VBox corps = new VBox();
+    private ButtonBar boutons = new ButtonBar();
 
     private String[] visibilites = {"public", "private", "protected"};
     private String[] types = {"float", "boolean", "String", "int", "double", ""};
+    
+    private Button confirmer = new Button("Confirmer");
+    private Button annuler   = new Button("Annuler");
 
     public FenetreAttribut() {
         this.setTitle("Attribut");
 
         Scene scene = new Scene(init());
         this.setScene(scene);
+        initEvents();
     }
 
     private Parent init() {
-        HBox root = new HBox();
-
+    	
+        VBox root = new VBox();
+        
+        annuler.setId("annuler");
+        
+        root.setPadding(new Insets(5));
+        nom.setPadding(new Insets(2.5));
+        type.setPadding(new Insets(2.5));
+        visibilite.setPadding(new Insets(2.5));
+        boutons.setPadding(new Insets(10));
+        
         comboBoxType.getItems().addAll(types);
         comboBoxVisibilite.getItems().addAll(visibilites);
 
-        labels.getChildren().addAll(nomAttribut, typeAttribut, visibiliteAttribut);
-        valeurs.getChildren().addAll(textFieldNom, comboBoxType, comboBoxVisibilite);
+        nom.getChildren().addAll(nomAttribut, textFieldNom);
+        type.getChildren().addAll(typeAttribut, comboBoxType);
+        visibilite.getChildren().addAll(visibiliteAttribut, comboBoxVisibilite);
 
-        root.getChildren().addAll(labels, valeurs);
+        corps.getChildren().addAll(nom, type, visibilite);
+        
+        boutons.getButtons().addAll(confirmer, annuler);
+        
+        root.getChildren().addAll(corps, boutons);
 
-        root.getChildren().add(root);
         return root;
+    }
+    
+    private void initEvents() {
+    	
+    	annuler.setOnAction(event -> {
+            annulerAttribut();
+        });
+    	
+    }
+    
+    
+    private void annulerAttribut() {
+    	
+    	close();
+    	
     }
 }
