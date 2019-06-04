@@ -26,7 +26,6 @@ public class Classe_ extends VBox {
 
         this.setId("Classe");
 
-        // this.setStyle("-fx-background-color: lightgrey");
         classNameVBox.setStyle("-fx-border-color: black");
         attributsVBox.setStyle("-fx-border-color: black");
         methodesVBox.setStyle("-fx-border-color: black");
