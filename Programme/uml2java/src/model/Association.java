@@ -61,14 +61,16 @@ public class Association extends Relation {
 		this.libelle = libelle;
 	}
 	
-    public String traductionJava() {
-    	String associationJava = "";
-    	
-    	
-    	
-    	
-    	return associationJava;
-    }
+    
+	public void unAun(String nomObjetDest, String nomObjetDep){
+		
+		Attribut a = new Attribut(nomObjetDest, this.classeDest.getNom(), "Public");
+		this.classeDep.ajoutAttribut(a);
+		
+		Attribut b = new Attribut(nomObjetDep, this.classeDep.getNom(), "Public");
+		this.classeDep.ajoutAttribut(b);
+		
+	}
 
 	
 	
