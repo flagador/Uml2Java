@@ -13,6 +13,9 @@ public class Attribut {
      * @param type
      * @param visibilite
      */
+    
+    public Attribut() {}
+    
     public Attribut(String nom, String type, String visibilite) {
         super();
         this.nom = nom;
@@ -43,6 +46,14 @@ public class Attribut {
     public void setVisibilite(String visibilite) {
         this.visibilite = visibilite;
     }
+    
+    
+    public String toString() {
+    	
+    	return getVisibilite() +" "+ getType() +" " +getNom();
+    	
+    }
+    
     
     public String toJava() {
     	return getVisibilite() +" "+ getType() +" " +getNom() + ";";

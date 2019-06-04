@@ -1,5 +1,7 @@
 package view;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -25,7 +27,9 @@ public class FenetreNouvelleClasse extends Stage {
     private VBox vBoxAttributsClasse = new VBox();
     private Label attributsLabel = new Label("Attributs :");
     private ListView<Attribut> attributsList = new ListView<Attribut>();
-    private HBox hBoxBoutonsAttributs = new HBox();
+    ObservableList <Attribut> items;
+   
+	private HBox hBoxBoutonsAttributs = new HBox();
     private Button ajouterAttribut = new Button("Ajouter");
     private Button modifierAttribut = new Button("Modifier");
     private Button supprimerAttribu = new Button("Supprimer");
@@ -53,6 +57,16 @@ public class FenetreNouvelleClasse extends Stage {
         this.setScene(scene);
         initEvents();
     }
+    
+    
+    public ListView<Attribut> getAttributsList() {
+		return attributsList;
+	}
+
+	public void setAttributsList(ListView<Attribut> attributsList) {
+		this.attributsList = attributsList;
+	}
+
 
     // Initialise les controls
     private Parent init() {
@@ -74,10 +88,12 @@ public class FenetreNouvelleClasse extends Stage {
         root.add(buttonBar, 1, 2);
         return root;
     }
-
+    
+    
     private void initEvents() {
         ajouterAttribut.setOnAction(event -> {
-            FenetreAttribut fenetreAttribut = new FenetreAttribut();
+            FenetreAttribut fenetreAttribut = new FenetreAttribut(this);
+            
             fenetreAttribut.show();
         });
 
