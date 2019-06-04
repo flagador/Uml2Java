@@ -83,30 +83,15 @@ public class Uml2Java extends Stage {
 
     private void initEvents() {
         nouvClasse.setOnMouseClicked(e -> {
-            Classe classe = new Classe("test");
-            FenetreClasse classesView = new FenetreClasse(classe);
-            classesView.showAndWait();
-
-            Classe_ classe_ = new Classe_(classe);
-
-            classe_.setId("Classes");
-
-            umlPane.getChildren().addAll(classe_);
-
-            classe_.setOnMouseClicked(event -> {
-                if (event.getClickCount() == 2) {
-                    FenetreClasse edit = new FenetreClasse(classe);
-                    edit.showAndWait();
-                }
-            });
-
+            FenetreClasse fenetreClasse = new FenetreClasse(null, umlPane);
+            fenetreClasse.show();
         });
     }
 
     private void nouvelleClasse() {
         //
         Classe classe = new Classe();
-        FenetreClasse fenetreClasse = new FenetreClasse(classe);
+        FenetreClasse fenetreClasse = new FenetreClasse(classe, umlPane);
         fenetreClasse.showAndWait();
 
     }

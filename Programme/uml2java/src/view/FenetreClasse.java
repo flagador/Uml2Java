@@ -6,9 +6,17 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.Attribut;
 import model.Classe;
+import view.controls.Classe_;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class FenetreClasse extends Stage {
+
+    Classe classe;
+    Parent zoneUML;
 
     private HBox      hBoxNomClasse  = new HBox();
     private Label     classeLabel    = new Label("Nom de la classe :");
@@ -16,7 +24,7 @@ public class FenetreClasse extends Stage {
 
     private VBox             vBoxAttributsClasse  = new VBox();
     private Label            attributsLabel       = new Label("Attributs :");
-    private ListView<Object> attributsList        = new ListView<>();
+    private ListView<Attribut> attributsList        = new ListView<Attribut>();
     private HBox             hBoxBoutonsAttributs = new HBox();
     private Button           ajouterAttribut      = new Button("Ajouter");
     private Button           modifierAttribut     = new Button("Modifier");
@@ -38,7 +46,9 @@ public class FenetreClasse extends Stage {
      * Constructeur
      * @param classe
      */
-    public FenetreClasse(Classe classe) {
+    public FenetreClasse(Classe classe, Parent zoneUML) {
+        this.classe = classe;
+        this.zoneUML = zoneUML;
         this.setTitle("Classe");
         this.setResizable(false);
 
@@ -71,16 +81,48 @@ public class FenetreClasse extends Stage {
     }
 
     private void initEvents() {
+        ajouterAttribut.setOnAction(event -> {
+            FenetreAttribut fenetreAttribut = new FenetreAttribut();
+            fenetreAttribut.show();
+        });
         annuler.setOnAction(event -> {
             annulerClasse();
         });
     }
 
+    private void afficherClasse() {
+        if (classe != null) {
+            classeTextArea.setText(classe.getNom());
+
+        } else {
+            classeTextArea.setText(null);
+        }
+
+    }
+
     private void ajouterClasse() {
+        if (estValide()) {
+            if (this.classe == null) {
+                this.classe = new Classe();
+                classe.setNom(classeTextArea.getText());
+                ArrayList<Attribut> tempAtt = new ArrayList<Attribut>(attributsList.getItems());
+                classe.setAttributs(tempAtt);
+            } else {
+            }
+            Classe_ classe_ = new Classe_(this.classe);
+        }
 
     }
 
     private void annulerClasse() {
         close();
+    }
+
+    private boolean estValide() {
+        if (classeTextArea.getText() == null || classeTextArea.getText().isEmpty()) {
+            return false;
+        }
+
+        return true;
     }
 }
