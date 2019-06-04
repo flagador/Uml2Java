@@ -9,19 +9,19 @@ import javafx.stage.Stage;
 
 public class FenetreMethode extends Stage {
 
-    private Label nomAttribut        = new Label("Nom :");
-    private Label typeAttribut       = new Label("Type :");
+    private Label nomAttribut = new Label("Nom :");
+    private Label typeAttribut = new Label("Type :");
     private Label visibiliteAttribut = new Label("Visibilite");
 
-    private TextField        textFieldNom       = new TextField();
-    private ComboBox<String> comboBoxType       = new ComboBox<>();
+    private TextField textFieldNom = new TextField();
+    private ComboBox<String> comboBoxType = new ComboBox<>();
     private ComboBox<String> comboBoxVisibilite = new ComboBox<>();
 
-    private VBox labels  = new VBox();
+    private VBox labels = new VBox();
     private VBox valeurs = new VBox();
 
     private String[] visibilites = {"public", "private", "protected"};
-    private String[] types       = {"float", "boolean", "String", "int", "double", "void"};
+    private String[] types = {"float", "boolean", "String", "int", "double", "void"};
 
     public FenetreMethode() {
         this.setTitle("Methode");
@@ -41,7 +41,6 @@ public class FenetreMethode extends Stage {
 
         root.getChildren().addAll(labels, valeurs);
 
-        root.getChildren().add(root);
         return root;
     }
 }

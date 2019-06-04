@@ -41,7 +41,6 @@ public class FenetreAttribut extends Stage {
 
         root.getChildren().addAll(labels, valeurs);
 
-        root.getChildren().add(root);
         return root;
     }
 }
