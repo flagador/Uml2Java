@@ -18,6 +18,9 @@ public class Methode {
      * @param type
      * @param variables
      */
+    
+    public Methode() {}
+    
     public Methode(String nom, String visibilite, String type, ArrayList<Attribut> attributs, String contenuMethode) {
         this.nom = nom;
         this.visibilite = visibilite;
@@ -62,6 +65,12 @@ public class Methode {
 
 	public void setContenuMethode(String contenuMethode) {
 		this.contenuMethode = contenuMethode;
+	}
+	
+	public String toString() {
+		
+		return getVisibilite() +" "+ getType() +" " +getNom() + " (" + getAttributs() + ") ";
+		
 	}
 	
     public String toJava() {

@@ -112,7 +112,7 @@ public class FenetreAttribut extends Stage {
         	
         	fenetreNouvelleClasse.items = FXCollections.observableArrayList(attribut);
             
-        	fenetreNouvelleClasse.getAttributsList().getSelectionModel().getSelectedItem();
+        	fenetreNouvelleClasse.getAttributsList().getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         	
         	fenetreNouvelleClasse.getAttributsList().getItems().add(attribut);
             

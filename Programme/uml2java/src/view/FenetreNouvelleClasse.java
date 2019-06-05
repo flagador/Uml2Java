@@ -32,11 +32,12 @@ public class FenetreNouvelleClasse extends Stage {
 	private HBox hBoxBoutonsAttributs = new HBox();
     private Button ajouterAttribut = new Button("Ajouter");
     private Button modifierAttribut = new Button("Modifier");
-    private Button supprimerAttribu = new Button("Supprimer");
+    private Button supprimerAttribut = new Button("Supprimer");
 
     private VBox vBoxMethodesClasse = new VBox();
     private Label methodesLabel = new Label("Methodes :");
     private ListView<Object> methodesList = new ListView<>();
+    ObservableList <Object> itemsM;
     private HBox hBoxBoutonsMethodes = new HBox();
     private Button ajouterMethode = new Button("Ajouter");
     private Button modifierMethode = new Button("Modifier");
@@ -66,16 +67,26 @@ public class FenetreNouvelleClasse extends Stage {
 	public void setAttributsList(ListView<Attribut> attributsList) {
 		this.attributsList = attributsList;
 	}
+	
+	
+    public ListView<Object> getMethodesList() {
+		return methodesList;
+	}
 
 
-    // Initialise les controls
+	public void setMethodesList(ListView<Object> methodesList) {
+		this.methodesList = methodesList;
+	}
+
+
+	// Initialise les controls
     private Parent init() {
         GridPane root = new GridPane();
 
         hBoxNomClasse.getChildren().addAll(classeLabel, classeTextArea);
 
         vBoxAttributsClasse.getChildren().addAll(attributsLabel, attributsList, hBoxBoutonsAttributs);
-        hBoxBoutonsAttributs.getChildren().addAll(ajouterAttribut, modifierAttribut, supprimerAttribu);
+        hBoxBoutonsAttributs.getChildren().addAll(ajouterAttribut, modifierAttribut, supprimerAttribut);
 
         vBoxMethodesClasse.getChildren().addAll(methodesLabel, methodesList, hBoxBoutonsMethodes);
         hBoxBoutonsMethodes.getChildren().addAll(ajouterMethode, modifierMethode, supprimerMethode);
@@ -92,11 +103,25 @@ public class FenetreNouvelleClasse extends Stage {
     
     private void initEvents() {
         ajouterAttribut.setOnAction(event -> {
-            FenetreAttribut fenetreAttribut = new FenetreAttribut(this);
+        	FenetreAttribut fenetreAttribut = new FenetreAttribut(this);
             
             fenetreAttribut.show();
         });
+        
+        supprimerAttribut.setOnAction(event -> {
+        	attributsList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        	
+        	model.Attribut a;
+        	a = attributsList.getSelectionModel().getSelectedItem();
+        	
+        	attributsList.getItems().remove(a);
+        });
 
+        ajouterMethode.setOnAction(event -> {
+        	FenetreMethode fenetreMethode = new FenetreMethode(this);
+        	fenetreMethode.show();
+        });
+        
         annuler.setOnAction(event -> {
             annulerClasse();
         });
