@@ -104,10 +104,17 @@ public class Classe {
         String getSet = "";
         String methodes = "";
 		
+        
+        for ( int i = 0; i <this.relations.size(); i++) {
+        	if (this.relations.get(i).getType().equals("association")) {
+        		this.relations.get(i).toJava();
+        	}
+        }
 	/*	for (int i = 0; i < properties.size(); i++) {
 			if(properties.get(i) == ClassProperty.ABSTRACT)
 				entete += ClassProperty.ABSTRACT.javaText();
 		} */
+        
         entete += "Public class " + this.nom;
         for ( int i = 0; i <this.relations.size(); i++) {
         	if (this.relations.get(i).getType().equals("generalisation") && this.relations.get(i).getEnfant().getNom().equals(this.getNom())) {
@@ -157,6 +164,8 @@ public class Classe {
         Classe Voiture = new Classe("Voiture");
         Classe Porsche911GT3RS = new Classe("Porsche911GT3RS");
         Generalisation generalisation = new Generalisation("generalisation", Voiture, Porsche911GT3RS);
+        Association association = new Association(Voiture, Porsche911GT3RS, "association", "1", "1", "concurrence");
+        association.ajoutAssociation();
         generalisation.ajoutGeneralisation();
         Methode puissanceFiscale = new Methode("puissanceFiscale", "Public", "float", Voiture.attributs, "return this.puissanceMoteur/10;");
         Attribut Moteur = new Attribut("puissanceMoteur", "float", "private");
