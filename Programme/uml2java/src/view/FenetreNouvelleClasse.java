@@ -36,8 +36,8 @@ public class FenetreNouvelleClasse extends Stage {
 
     private VBox vBoxMethodesClasse = new VBox();
     private Label methodesLabel = new Label("Methodes :");
-    private ListView<Object> methodesList = new ListView<>();
-    ObservableList <Object> itemsM;
+    private ListView<model.Methode> methodesList = new ListView<model.Methode>();
+    ObservableList <model.Methode> itemsM;
     private HBox hBoxBoutonsMethodes = new HBox();
     private Button ajouterMethode = new Button("Ajouter");
     private Button modifierMethode = new Button("Modifier");
@@ -69,12 +69,12 @@ public class FenetreNouvelleClasse extends Stage {
 	}
 	
 	
-    public ListView<Object> getMethodesList() {
+    public ListView<model.Methode> getMethodesList() {
 		return methodesList;
 	}
 
 
-	public void setMethodesList(ListView<Object> methodesList) {
+	public void setMethodesList(ListView<model.Methode> methodesList) {
 		this.methodesList = methodesList;
 	}
 
@@ -120,6 +120,15 @@ public class FenetreNouvelleClasse extends Stage {
         ajouterMethode.setOnAction(event -> {
         	FenetreMethode fenetreMethode = new FenetreMethode(this);
         	fenetreMethode.show();
+        });
+        
+        supprimerMethode.setOnAction(event -> {
+        	methodesList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        	
+        	model.Methode m;
+        	m = methodesList.getSelectionModel().getSelectedItem();
+        	
+        	methodesList.getItems().remove(m);
         });
         
         annuler.setOnAction(event -> {
