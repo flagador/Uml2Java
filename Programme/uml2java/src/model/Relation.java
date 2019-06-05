@@ -43,5 +43,7 @@ public abstract class Relation {
     	String generalisation = "";
 		return generalisation;
 	}
+    public void toJava() {
+    }
 
 }
