@@ -54,7 +54,7 @@ public class Classe {
         this.relations = relations;
     }
 
-    // M�thodes ajout
+    // Methodes ajout
 
     public void ajoutAttribut(Attribut a) {
 

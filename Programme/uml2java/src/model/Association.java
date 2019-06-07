@@ -89,7 +89,7 @@ public class Association extends Relation {
 		if(multipliciteIn == "1" && multipliciteOut == "1") {
 			unAun(this.getClasseDest().getNom(), this.getClasseDest().getNom());
 		}
-		else if(multipliciteIn =j= "1" && multipliciteOut == "n") {
+		else if(multipliciteIn == "1" && multipliciteOut == "n") {
 			unAn(this.getClasseDest().getNom(), this.getClasseDest().getNom());
 		}
 	}
