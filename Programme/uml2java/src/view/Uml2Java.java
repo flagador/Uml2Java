@@ -83,11 +83,13 @@ public class Uml2Java extends Stage {
     private void initEvents() {
         nouvClasse.setOnMouseClicked(e -> {
             nouvelleClasse();
+            //System.out.print("InitEvent");
         });
     }
 
     private void nouvelleClasse() {
         // Execute lors de la creation d'une nouvelle classe
+    	//System.out.println("nouvelleClasse");
         FenetreNouvelleClasse fenetreNouvelleClasse = new FenetreNouvelleClasse();
         fenetreNouvelleClasse.setZoneUML(umlPane);
         fenetreNouvelleClasse.show();

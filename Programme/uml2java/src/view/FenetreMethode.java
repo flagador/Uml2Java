@@ -3,6 +3,7 @@ package view;
 import java.util.ArrayList;
 
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -10,6 +11,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import model.Attribut;
 
 public class FenetreMethode extends Stage {
 
@@ -19,13 +21,18 @@ public class FenetreMethode extends Stage {
     private Label nommethode = new Label("Nom : ");
     private Label typemethode = new Label("Type : ");
     private Label visibilitemethode = new Label("Visibilite : ");
-    private Label attributmethode = new Label("Attributs : ");
+    private Label parametremethode = new Label("Parametre : ");
 
     private TextField textFieldNom = new TextField();
     private ComboBox<String> comboBoxType = new ComboBox<>();
     private ComboBox<String> comboBoxVisibilite = new ComboBox<>();
     private ComboBox<model.Attribut> comboBoxAttribut = new ComboBox<>();
+    
 
+    private Button parametre = new Button("Nouveau");
+    private ListView<Attribut> parametreList = new ListView<Attribut>();
+    ObservableList <Attribut> items;
+    
     private HBox nom = new HBox();
     private HBox type = new HBox();
     private HBox visibilite = new HBox();
@@ -35,7 +42,7 @@ public class FenetreMethode extends Stage {
 
     private String[] visibilites = {"public", "private", "protected"};
     private String[] types = {"float", "boolean", "String", "int", "double", "void"};
-    private model.Attribut[] attributs = new model.Attribut[20];
+    private model.Attribut[] parametres = new model.Attribut[20];
     		
     private Button confirmer = new Button("Confirmer");
     private Button annuler   = new Button("Annuler");
@@ -59,6 +66,14 @@ public class FenetreMethode extends Stage {
 	public void setMethode(model.Methode methode) {
 		this.methode = methode;
 	}
+	
+	public ListView<Attribut> getParametreList() {
+		return parametreList;
+	}
+
+	public void setParametreList(ListView<Attribut> parametreList) {
+		this.parametreList = parametreList;
+	}
 
 
 	private Parent init() {
@@ -75,19 +90,19 @@ public class FenetreMethode extends Stage {
         
         for(i = 0; i < fenetreNouvelleClasse.getAttributsList().getItems().size(); i++) {
         	
-			attributs[i] = fenetreNouvelleClasse.getAttributsList().getItems().get(i);
+			parametres[i] = fenetreNouvelleClasse.getAttributsList().getItems().get(i);
 			
 		}
         
         
         comboBoxType.getItems().addAll(types);
         comboBoxVisibilite.getItems().addAll(visibilites);
-        comboBoxAttribut.getItems().addAll(attributs);
+        comboBoxAttribut.getItems().addAll(parametres);
 
         nom.getChildren().addAll(nommethode, textFieldNom);
         type.getChildren().addAll(typemethode, comboBoxType);
         visibilite.getChildren().addAll(visibilitemethode, comboBoxVisibilite);
-        attribut.getChildren().addAll(attributmethode, comboBoxAttribut);
+        attribut.getChildren().addAll(parametremethode, comboBoxAttribut, parametre);
 
         corps.getChildren().addAll(nom, type, visibilite, attribut);
         
@@ -100,6 +115,10 @@ public class FenetreMethode extends Stage {
 	
 	 private void initEvents() {
 	    	
+		 	parametre.setOnAction(event -> {
+		 		newAttribut();
+		 	});
+		 
 	    	annuler.setOnAction(event -> {
 	            annulermethode();
 	        });
@@ -110,20 +129,30 @@ public class FenetreMethode extends Stage {
 	    	
 	    }
 	    
+	 
+	 	public void newAttribut() {
+	 		
+	 		FenetreParametre fenetreParametre = new FenetreParametre(this);
+            
+            fenetreParametre.show();
+	 		
+	 	}
+	 
 	    
-	    private void annulermethode() {
+	    public void annulermethode() {
 	    	
 	    	close();
 	    	
 	    }
 	    
 	    
-	    private void ajoutermethode() {
+	    public void ajoutermethode() {
 	        if (estValide()) {
 	        	
 	        	methode.setNom(textFieldNom.getText());
 	        	methode.setVisibilite(comboBoxVisibilite.getValue());
 	        	methode.setType(comboBoxType.getValue());
+	        	//methode.setAttributs(comboBoxAttribut.getValue());
 	        	
 	        	fenetreNouvelleClasse.itemsM = FXCollections.observableArrayList(methode);
 	            

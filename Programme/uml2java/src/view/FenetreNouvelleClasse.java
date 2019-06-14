@@ -103,7 +103,7 @@ public class FenetreNouvelleClasse extends Stage {
     
     private void initEvents() {
         ajouterAttribut.setOnAction(event -> {
-        	FenetreAttribut fenetreAttribut = new FenetreAttribut(this);
+        	FenetreAttribut fenetreAttribut = new FenetreAttribut(this, classe);
             
             fenetreAttribut.show();
         });
@@ -119,6 +119,9 @@ public class FenetreNouvelleClasse extends Stage {
 
         ajouterMethode.setOnAction(event -> {
         	FenetreMethode fenetreMethode = new FenetreMethode(this);
+        	
+        	methodesList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        	
         	fenetreMethode.show();
         });
         
