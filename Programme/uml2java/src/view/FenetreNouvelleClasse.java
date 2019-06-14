@@ -151,7 +151,6 @@ public class FenetreNouvelleClasse extends Stage {
             zoneUML.getChildren().add(classe_);
             close();
         }
-
     }
 
     private void annulerClasse() {
@@ -165,4 +164,6 @@ public class FenetreNouvelleClasse extends Stage {
 
         return true;
     }
+    
+
 }

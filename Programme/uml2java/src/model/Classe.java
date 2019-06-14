@@ -157,6 +157,7 @@ public class Classe {
             methodes += this.methodes.get(i).toJava();
         }
         trad += entete + attributsJava + constructeur + getSet + methodes;
+        trad += "}";
         return trad;
     }
 
@@ -173,7 +174,7 @@ public class Classe {
         Voiture.ajoutAttribut(Moteur);
         Voiture.ajoutAttribut(Volant);
         Voiture.ajoutMethode(puissanceFiscale);
-        System.out.println(Voiture.traductionJava() + "}");
-        System.out.println(Porsche911GT3RS.traductionJava() + "}");
+        System.out.println(Voiture.traductionJava());
+        System.out.println(Porsche911GT3RS.traductionJava());
     }
 }
