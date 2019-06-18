@@ -1,6 +1,5 @@
 package view;
 
-import java.util.ArrayList;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -10,12 +9,15 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import model.Attribut;
+import model.Classe;
 
 public class FenetreMethode extends Stage {
 
 	private model.Methode methode;
+	private Classe classe;
 	private FenetreNouvelleClasse fenetreNouvelleClasse;
 	
     private Label nommethode = new Label("Nom : ");
@@ -47,8 +49,9 @@ public class FenetreMethode extends Stage {
     private Button confirmer = new Button("Confirmer");
     private Button annuler   = new Button("Annuler");
     
-    public FenetreMethode(FenetreNouvelleClasse f) {
+    public FenetreMethode(FenetreNouvelleClasse f, Classe c) {
     	this.fenetreNouvelleClasse = f;
+    	this.classe = c;
     	this.methode = new model.Methode();
     	this.setTitle("Methode");
 
@@ -79,6 +82,14 @@ public class FenetreMethode extends Stage {
 	private Parent init() {
         VBox root = new VBox();
 
+        Font police = Font.loadFont(getClass().getResourceAsStream("Comfortaa-Regular.ttf"), 12);
+        nommethode.setFont(police);
+        typemethode.setFont(police);
+        visibilitemethode.setFont(police);
+        parametremethode.setFont(police);
+        
+        annuler.getStyleClass().add("annuler");
+        
         root.setPadding(new Insets(5));
         nom.setPadding(new Insets(2.5));
         type.setPadding(new Insets(2.5));
@@ -132,7 +143,7 @@ public class FenetreMethode extends Stage {
 	 
 	 	public void newAttribut() {
 	 		
-	 		FenetreParametre fenetreParametre = new FenetreParametre(this);
+	 		FenetreParametre fenetreParametre = new FenetreParametre(this, methode);
             
             fenetreParametre.show();
 	 		
@@ -154,6 +165,8 @@ public class FenetreMethode extends Stage {
 	        	methode.setType(comboBoxType.getValue());
 	        	//methode.setAttributs(comboBoxAttribut.getValue());
 	        	
+	        	
+	        	
 	        	fenetreNouvelleClasse.itemsM = FXCollections.observableArrayList(methode);
 	            
 	        	fenetreNouvelleClasse.getMethodesList().getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
@@ -166,7 +179,47 @@ public class FenetreMethode extends Stage {
 	    }
 	    
 	    
-	    private boolean estValide() {
+	    public TextField getTextFieldNom() {
+			return textFieldNom;
+		}
+
+
+		public void setTextFieldNom(TextField textFieldNom) {
+			this.textFieldNom = textFieldNom;
+		}
+
+
+		public ComboBox<String> getComboBoxType() {
+			return comboBoxType;
+		}
+
+
+		public void setComboBoxType(ComboBox<String> comboBoxType) {
+			this.comboBoxType = comboBoxType;
+		}
+
+
+		public ComboBox<String> getComboBoxVisibilite() {
+			return comboBoxVisibilite;
+		}
+
+
+		public void setComboBoxVisibilite(ComboBox<String> comboBoxVisibilite) {
+			this.comboBoxVisibilite = comboBoxVisibilite;
+		}
+
+
+		public ComboBox<model.Attribut> getComboBoxAttribut() {
+			return comboBoxAttribut;
+		}
+
+
+		public void setComboBoxAttribut(ComboBox<model.Attribut> comboBoxAttribut) {
+			this.comboBoxAttribut = comboBoxAttribut;
+		}
+
+
+		private boolean estValide() {
 	        if (textFieldNom.getText() == null || textFieldNom.getText().isEmpty()) {
 	            return false;
 	        }

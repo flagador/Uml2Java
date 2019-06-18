@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import model.Classe;
 
@@ -15,7 +16,6 @@ public class FenetreAttribut extends Stage {
 	private model.Attribut attribut;
 	private FenetreNouvelleClasse fenetreNouvelleClasse;
 	private Classe classe;
-	private FenetreMethode fenetreMethode;
 	
     private Label nomAttribut        = new Label("Nom : ");
     private Label typeAttribut       = new Label("Type : ");
@@ -63,7 +63,12 @@ public class FenetreAttribut extends Stage {
     	
         VBox root = new VBox();
         
-        annuler.setId("annuler");
+        Font police = Font.loadFont(getClass().getResourceAsStream("Comfortaa-Regular.ttf"), 12);
+        nomAttribut.setFont(police);
+        typeAttribut.setFont(police);
+        visibiliteAttribut.setFont(police);
+        
+        annuler.getStyleClass().add("annuler");
         
         root.setPadding(new Insets(5));
         nom.setPadding(new Insets(2.5));
@@ -114,15 +119,13 @@ public class FenetreAttribut extends Stage {
         	attribut.setVisibilite(comboBoxVisibilite.getValue());
         	attribut.setType(comboBoxType.getValue());
         	
-        	classe.getAttributs().add(attribut);
+        	//classe.getAttributs().add(attribut);
         	
         	fenetreNouvelleClasse.items = FXCollections.observableArrayList(attribut);
             
         	fenetreNouvelleClasse.getAttributsList().getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         	
         	fenetreNouvelleClasse.getAttributsList().getItems().add(attribut);
-        	
-        	fenetreMethode.getMethode().getAttributs().add(attribut);
             
             close();
         }
@@ -137,4 +140,36 @@ public class FenetreAttribut extends Stage {
 
         return true;
     }
+    
+    
+    public TextField getTextFieldNom() {
+		return textFieldNom;
+	}
+
+
+	public void setTextFieldNom(TextField textFieldNom) {
+		this.textFieldNom = textFieldNom;
+	}
+
+
+	public ComboBox<String> getComboBoxType() {
+		return comboBoxType;
+	}
+
+
+	public void setComboBoxType(ComboBox<String> comboBoxType) {
+		this.comboBoxType = comboBoxType;
+	}
+
+
+	public ComboBox<String> getComboBoxVisibilite() {
+		return comboBoxVisibilite;
+	}
+
+
+	public void setComboBoxVisibilite(ComboBox<String> comboBoxVisibilite) {
+		this.comboBoxVisibilite = comboBoxVisibilite;
+	}
+
+
 }

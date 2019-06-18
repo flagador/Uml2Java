@@ -6,6 +6,7 @@ import javafx.scene.control.*;
 import javafx.scene.input.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import model.Classe;
 import view.controls.MenuItem_;
@@ -49,14 +50,25 @@ public class Uml2Java extends Stage {
         this.setTitle(title);
 
         Scene scene = new Scene(init(), 800, 700);
-
+        
         initEvents();
         this.setScene(scene);
     }
 
     private Parent init() {
         BorderPane root = new BorderPane();
-
+        
+        
+        
+        nouvClasse.getStyleClass ().add("Button");
+        nouvAsso.getStyleClass ().add("Button");
+        nouvGene.getStyleClass ().add("Button");
+        nouvDep.getStyleClass ().add("Button");
+        umlToolBar.setId("menuColor");
+        umlTab.setId("menuColor");
+        javaTab.setId("javaMenu");
+        root.setId("rootColor");
+        
         menuBar.getMenus().addAll(ficherMenu, aideMenu);
         ficherMenu.getItems().addAll(nouveau, ouvrir, enregistrer, quitter);
         aideMenu.getItems().addAll(aide, aPropos);

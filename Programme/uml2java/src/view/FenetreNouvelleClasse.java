@@ -2,6 +2,7 @@ package view;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -9,6 +10,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Attribut;
@@ -38,6 +40,7 @@ public class FenetreNouvelleClasse extends Stage {
     private Label methodesLabel = new Label("Methodes :");
     private ListView<model.Methode> methodesList = new ListView<model.Methode>();
     ObservableList <model.Methode> itemsM;
+    
     private HBox hBoxBoutonsMethodes = new HBox();
     private Button ajouterMethode = new Button("Ajouter");
     private Button modifierMethode = new Button("Modifier");
@@ -54,7 +57,7 @@ public class FenetreNouvelleClasse extends Stage {
 
         this.initModality(Modality.APPLICATION_MODAL);
 
-        Scene scene = new Scene(init(), 500, 500);
+        Scene scene = new Scene(init(), 550, 500);
         this.setScene(scene);
         initEvents();
     }
@@ -82,6 +85,24 @@ public class FenetreNouvelleClasse extends Stage {
 	// Initialise les controls
     private Parent init() {
         GridPane root = new GridPane();
+        
+        Font police = Font.loadFont(getClass().getResourceAsStream("Comfortaa-Regular.ttf"), 12);
+        classeLabel.setFont(police);
+        
+        annuler.getStyleClass().add("annuler");
+        
+        root.setPadding(new Insets(20));
+        hBoxBoutonsAttributs.setPadding(new Insets(5));
+        hBoxBoutonsMethodes.setPadding(new Insets(5));
+        vBoxAttributsClasse.setPadding(new Insets(5));
+        vBoxMethodesClasse.setPadding(new Insets(5));
+        hBoxBoutonsAttributs.setMargin(ajouterAttribut, new Insets(5));
+        hBoxBoutonsAttributs.setMargin(modifierAttribut, new Insets(5));
+        hBoxBoutonsAttributs.setMargin(supprimerAttribut, new Insets(5));
+        hBoxBoutonsMethodes.setMargin(ajouterMethode, new Insets(5));
+        hBoxBoutonsMethodes.setMargin(modifierMethode, new Insets(5));
+        hBoxBoutonsMethodes.setMargin(supprimerMethode, new Insets(5));
+        hBoxNomClasse.setMargin(classeLabel, new Insets(5));
 
         hBoxNomClasse.getChildren().addAll(classeLabel, classeTextArea);
 
@@ -93,7 +114,7 @@ public class FenetreNouvelleClasse extends Stage {
 
         buttonBar.getButtons().addAll(confirmer, annuler);
 
-        root.add(hBoxNomClasse, 0, 0);
+        root.add(hBoxNomClasse, 0, 0, 4, 1);
         root.add(vBoxAttributsClasse, 0, 1);
         root.add(vBoxMethodesClasse, 1, 1);
         root.add(buttonBar, 1, 2);
@@ -108,6 +129,25 @@ public class FenetreNouvelleClasse extends Stage {
             fenetreAttribut.show();
         });
         
+        modifierAttribut.setOnAction(event -> {
+        	
+        	attributsList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        	
+        	model.Attribut a;
+        	a = attributsList.getSelectionModel().getSelectedItem();
+        	
+        	FenetreAttribut fenetreAttribut = new FenetreAttribut(this, classe);
+            
+        	fenetreAttribut.getTextFieldNom().setText(a.getNom());
+        	fenetreAttribut.getComboBoxType().setValue(a.getType());
+        	fenetreAttribut.getComboBoxVisibilite().setValue(a.getVisibilite());
+        	
+        	attributsList.getItems().remove(a);
+        	
+            fenetreAttribut.show();
+        	
+        });
+        
         supprimerAttribut.setOnAction(event -> {
         	attributsList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         	
@@ -118,11 +158,30 @@ public class FenetreNouvelleClasse extends Stage {
         });
 
         ajouterMethode.setOnAction(event -> {
-        	FenetreMethode fenetreMethode = new FenetreMethode(this);
+        	FenetreMethode fenetreMethode = new FenetreMethode(this, classe);
         	
-        	methodesList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        	methodesList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         	
         	fenetreMethode.show();
+        });
+        
+        modifierMethode.setOnAction(event -> {
+        	
+        	methodesList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        	
+        	model.Methode m;
+        	m = methodesList.getSelectionModel().getSelectedItem();
+        	
+        	FenetreMethode fenetreMethode = new FenetreMethode(this, classe);
+            
+        	fenetreMethode.getTextFieldNom().setText(m.getNom());
+        	fenetreMethode.getComboBoxType().setValue(m.getType());
+        	fenetreMethode.getComboBoxVisibilite().setValue(m.getVisibilite());
+        	
+        	methodesList.getItems().remove(m);
+        	
+        	fenetreMethode.show();
+        	
         });
         
         supprimerMethode.setOnAction(event -> {

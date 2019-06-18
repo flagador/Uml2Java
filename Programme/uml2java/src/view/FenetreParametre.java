@@ -7,12 +7,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class FenetreParametre extends Stage {
 	
 	private model.Attribut attribut;
 	private FenetreMethode fenetreMethode;
+	private model.Methode methode;
 	
     private Label nomAttribut        = new Label("Nom : ");
     private Label typeAttribut       = new Label("Type : ");
@@ -31,8 +33,9 @@ public class FenetreParametre extends Stage {
     private Button annuler   = new Button("Annuler");
     
     
-    public FenetreParametre(FenetreMethode f) {
+    public FenetreParametre(FenetreMethode f, model.Methode m) {
     	this.fenetreMethode = f;
+    	this.methode = m;
     	this.attribut = new model.Attribut();
         this.setTitle("Attribut");
 
@@ -56,7 +59,11 @@ public class FenetreParametre extends Stage {
     	
         VBox root = new VBox();
         
-        annuler.setId("annuler");
+        Font police = Font.loadFont(getClass().getResourceAsStream("Comfortaa-Regular.ttf"), 12);
+        nomAttribut.setFont(police);
+        typeAttribut.setFont(police);
+        
+        annuler.getStyleClass().add("annuler");
         
         root.setPadding(new Insets(5));
         nom.setPadding(new Insets(2.5));
@@ -102,6 +109,8 @@ public class FenetreParametre extends Stage {
         	
         	attribut.setNom(textFieldNom.getText());
         	attribut.setType(comboBoxType.getValue());
+        	
+        	//methode.getAttributs().add(attribut);
         	
         	fenetreMethode.items = FXCollections.observableArrayList(attribut);
             
