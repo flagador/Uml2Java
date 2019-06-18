@@ -21,8 +21,20 @@ public class FenetreNouvelleClasse extends Stage {
 
     private Classe classe;
     private Pane zoneUML;
+    private TextArea zoneJava;
+    private Uml2Java uml;
+    private TextArea textJ = new TextArea();
 
-    private HBox hBoxNomClasse = new HBox();
+    public TextArea getTextJ() {
+		return textJ;
+	}
+
+
+	public void setTextJ(TextArea textJ) {
+		this.textJ = textJ;
+	}
+
+	private HBox hBoxNomClasse = new HBox();
     private Label classeLabel = new Label("Nom de la classe :");
     private TextField classeTextArea = new TextField();
 
@@ -50,8 +62,9 @@ public class FenetreNouvelleClasse extends Stage {
     private Button confirmer = new Button("Confirmer");
     private Button annuler = new Button("Annuler");
 
-    public FenetreNouvelleClasse() {
+    public FenetreNouvelleClasse(Uml2Java uml) {
         this.classe = new Classe();
+        this.uml = uml;
         this.setTitle("Classe");
         this.setResizable(false);
 
@@ -90,6 +103,8 @@ public class FenetreNouvelleClasse extends Stage {
         classeLabel.setFont(police);
         
         annuler.getStyleClass().add("annuler");
+        supprimerAttribut.getStyleClass().add("supprimer");
+        supprimerMethode.getStyleClass().add("supprimer");
         
         root.setPadding(new Insets(20));
         hBoxBoutonsAttributs.setPadding(new Insets(5));
@@ -205,18 +220,47 @@ public class FenetreNouvelleClasse extends Stage {
     public void setZoneUML(Pane zoneUML) {
         this.zoneUML = zoneUML;
     }
+    
+    public void setZoneJava(TextArea zoneJava) {
+    	this.zoneJava = zoneJava;
+    }
 
     private void ajouterClasse() {
         if (estValide() && zoneUML != null) {
             classe.setNom(classeTextArea.getText());
             Classe_ classe_ = new Classe_(classe);
             zoneUML.getChildren().add(classe_);
+//            zoneJava.setText(classe.traductionJava());
+//            System.out.println(zoneJava);
+            
+            //textJ.setText(classe.traductionJava());
+            //uml.setJavaCode(new TextArea(trad(classe)));
+            
+            //uml.getJavaCode() = new TextArea(trad(classe));
+            
+            
             close();
         }
 
     }
+    
+    public String trad(Classe classe) {
+    	
+    	return classe.traductionJava();
+    	
+    }
 
-    private void annulerClasse() {
+    public Classe getClasse() {
+		return classe;
+	}
+
+
+	public void setClasse(Classe classe) {
+		this.classe = classe;
+	}
+
+
+	private void annulerClasse() {
         close();
     }
 

@@ -26,6 +26,11 @@
 	-fx-text-fill : #ffffff;
 }
 
+.supprimer {
+	-fx-background-color: #E83400;
+	-fx-text-fill : #ffffff;
+}
+
 .vBoxAttributsClasse {
 	-fx-margin-right : 20px;
 }
