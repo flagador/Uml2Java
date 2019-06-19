@@ -1,0 +1,21 @@
+window_sizes 1920 1017 393 1522 865 104
+
+diagrams
+  active  classdiagram_ref 128002 // uml2java
+    1522 865 100 A4 0 0
+end
+show_stereotypes
+marked
+  attribute_ref 128642 // type
+end
+selected attribute_ref 130946 // libelle
+open
+  class_ref 128002 // Classe
+  attribute_ref 128770 // visibilite
+  class_ref 128258 // Methode
+  class_ref 128386 // Relation
+  class_ref 128514 // Generalisation
+  class_ref 128642 // Dependance
+  class_ref 128770 // Association
+end
+end
