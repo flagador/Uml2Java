@@ -64,9 +64,12 @@ public class FenetreAttribut extends Stage {
         VBox root = new VBox();
         
         Font police = Font.loadFont(getClass().getResourceAsStream("Comfortaa-Regular.ttf"), 12);
+        Font police2 = Font.loadFont(getClass().getResourceAsStream("Comfortaa-Regular.ttf"), 10);
         nomAttribut.setFont(police);
         typeAttribut.setFont(police);
         visibiliteAttribut.setFont(police);
+        annuler.setFont(police2);
+        confirmer.setFont(police2);
         
         annuler.getStyleClass().add("annuler");
         

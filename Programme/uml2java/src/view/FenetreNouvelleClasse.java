@@ -100,7 +100,18 @@ public class FenetreNouvelleClasse extends Stage {
         GridPane root = new GridPane();
         
         Font police = Font.loadFont(getClass().getResourceAsStream("Comfortaa-Regular.ttf"), 12);
+        Font police2 = Font.loadFont(getClass().getResourceAsStream("Comfortaa-Regular.ttf"), 10);
         classeLabel.setFont(police);
+        attributsLabel.setFont(police);
+        methodesLabel.setFont(police);
+        ajouterAttribut.setFont(police2);
+        modifierAttribut.setFont(police2);
+        supprimerAttribut.setFont(police2);
+        ajouterMethode.setFont(police2);
+        modifierMethode.setFont(police2);
+        supprimerMethode.setFont(police2);
+        annuler.setFont(police);
+        confirmer.setFont(police);
         
         annuler.getStyleClass().add("annuler");
         supprimerAttribut.getStyleClass().add("supprimer");

@@ -37,7 +37,7 @@ public class FenetreParametre extends Stage {
     	this.fenetreMethode = f;
     	this.methode = m;
     	this.attribut = new model.Attribut();
-        this.setTitle("Attribut");
+        this.setTitle("Paramètre");
 
         Scene scene = new Scene(init());
         this.setScene(scene);
@@ -60,8 +60,11 @@ public class FenetreParametre extends Stage {
         VBox root = new VBox();
         
         Font police = Font.loadFont(getClass().getResourceAsStream("Comfortaa-Regular.ttf"), 12);
+        Font police2 = Font.loadFont(getClass().getResourceAsStream("Comfortaa-Regular.ttf"), 10);
         nomAttribut.setFont(police);
         typeAttribut.setFont(police);
+        annuler.setFont(police2);
+        confirmer.setFont(police2);
         
         annuler.getStyleClass().add("annuler");
         
