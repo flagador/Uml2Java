@@ -83,10 +83,14 @@ public class FenetreMethode extends Stage {
         VBox root = new VBox();
 
         Font police = Font.loadFont(getClass().getResourceAsStream("Comfortaa-Regular.ttf"), 12);
+        Font police2 = Font.loadFont(getClass().getResourceAsStream("Comfortaa-Regular.ttf"), 10);
         nommethode.setFont(police);
         typemethode.setFont(police);
         visibilitemethode.setFont(police);
         parametremethode.setFont(police);
+        annuler.setFont(police2);
+        confirmer.setFont(police2);
+        parametre.setFont(police2);
         
         annuler.getStyleClass().add("annuler");
         

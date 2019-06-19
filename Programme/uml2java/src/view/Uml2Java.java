@@ -58,7 +58,12 @@ public class Uml2Java extends Stage {
     private Parent init() {
         BorderPane root = new BorderPane();
         
-        
+        Font police = Font.loadFont(getClass().getResourceAsStream("Comfortaa-Regular.ttf"), 12);
+        javaCode.setFont(police);
+        nouvClasse.setFont(police);
+        nouvAsso.setFont(police);
+        nouvGene.setFont(police);
+        nouvDep.setFont(police);
         
         nouvClasse.getStyleClass ().add("Button");
         nouvAsso.getStyleClass ().add("Button");
