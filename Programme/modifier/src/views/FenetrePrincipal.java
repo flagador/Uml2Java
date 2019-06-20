@@ -1,5 +1,6 @@
 package views;
 
+import javafx.collections.ObservableList;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -10,9 +11,11 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import model.Classe;
 import views.controls.ClasseGraphique;
 import views.controls.MenuItem;
 import ressources.fonts.*;
+import view.FenetreAssociation;
 
 public class FenetrePrincipal extends Stage {
 
@@ -44,6 +47,9 @@ public class FenetrePrincipal extends Stage {
     private TextArea javaCode = new TextArea("Java Code ...");
 
     private ContextMenu contextMenu = new ContextMenu();
+    
+    private ListView<model.Classe> classeList = new ListView<Classe>();
+    ObservableList <model.Classe> items;
 
     private Button nouvClasse = new Button("Classe");
     private Button nouvAsso = new Button("Association");
@@ -52,7 +58,7 @@ public class FenetrePrincipal extends Stage {
 
     public FenetrePrincipal() {
         this.setTitle("Uml2Java");
-        this.setHeight(600.0);
+        this.setHeight(700.0);
         this.setWidth(800.0);
         this.setResizable(false);
 
@@ -117,6 +123,10 @@ public class FenetrePrincipal extends Stage {
         nouvClasse.setOnAction(event -> {
             nouvelleClasse();
         });
+        
+        nouvAsso.setOnAction(event -> {
+        	nouvelleAssociation();
+        });
 
     }
 
@@ -139,4 +149,23 @@ public class FenetrePrincipal extends Stage {
         umlPane.getChildren().add(classeGraphique);
 
     }
+    
+    
+    private void nouvelleAssociation() {
+        
+        FenetreNouvelleAssociation fenetreAssociation = new FenetreNouvelleAssociation();
+        
+        fenetreAssociation.show();
+        
+    }
+    
+    
+    public ListView<model.Classe> getClasseList() {
+		return classeList;
+	}
+
+	public void setClasseList(ListView<model.Classe> classeList) {
+		this.classeList = classeList;
+	}
+    
 }

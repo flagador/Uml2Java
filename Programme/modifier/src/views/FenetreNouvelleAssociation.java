@@ -21,11 +21,15 @@ import model.Association;
 import models.Attribut;
 import models.Classe;
 import models.Methode;
+import view.Uml2Java;
 
 public class FenetreNouvelleAssociation extends Stage {
 
 	private Association association;
-
+	private FenetrePrincipal uml;
+	
+	private model.Classe[] comboClasse = new model.Classe[20];
+	
     private Label erreurLabel = new Label();
 
     private HBox hBoxNomAssociation = new HBox();
@@ -33,11 +37,11 @@ public class FenetreNouvelleAssociation extends Stage {
     private TextField nomAssociationTextArea = new TextField();
 
     private Label classe1Label = new Label("Classe 1 :");
-    private ComboBox<Classe> classe1 = new ComboBox();
+    private ComboBox<model.Classe> classe1 = new ComboBox();
     
 
     private Label classe2Label = new Label("Classe 2 :");
-    private ComboBox<Classe> classe2 = new ComboBox();
+    private ComboBox<model.Classe> classe2 = new ComboBox();
     
     private ButtonBar buttonBar = new ButtonBar();
     private Button confirmer = new Button("Confirmer");
@@ -73,6 +77,17 @@ public class FenetreNouvelleAssociation extends Stage {
 
         buttonBar.getButtons().addAll(confirmer, annuler);
 
+        int i = 0;
+        
+        for(i = 0; i < uml.getClasseList().getItems().size(); i++) {
+        	
+			comboClasse[i] = uml.getClasseList().getItems().get(i);
+			
+		}
+        
+        classe1.getItems().addAll(comboClasse);
+        classe2.getItems().addAll(comboClasse);
+        
         hBoxNomAssociation.getChildren().addAll(nomAssociationLabel, nomAssociationTextArea);
         hBoxNomAssociation.setSpacing(10);
         root.add(hBoxNomAssociation, 0, 0);
@@ -111,12 +126,23 @@ public class FenetreNouvelleAssociation extends Stage {
      */
     private void creerAssociation() {
         if (estValide()) {
-            association = new Association(classe1.getSelectionModel().getSelectedItem(), classe2.getSelectionModel().getSelectedItem(), "Association", "af", "af", nomAssociationTextArea.getText());
-            association.setNom(nomAssociationTextArea.getText());
-            for (Attribut attribut : attributsList.getItems())
-                classe.getAttributs().add(attribut);
-            for (Methode methode : methodesList.getItems())
-                classe.getMethodes().add(methode);
+        	
+        	model.Classe c1, c2;
+        	c1 = new model.Classe();
+        	c2 = new model.Classe();
+        	
+        	c1 = classe1.getSelectionModel().getSelectedItem();
+        	c2 = classe2.getSelectionModel().getSelectedItem();
+        	
+        	String lib;
+        	lib = nomAssociationTextArea.getText();
+        	
+            association = new Association(c1, c2, "Association", "af", "af", lib);
+            association.setLibelle(nomAssociationTextArea.getText());
+            for (model.Classe classe : classe1.getItems())
+                classe.ajoutRelation(association);
+            for (model.Classe classe2 : classe2.getItems())
+                classe2.ajoutRelation(association);
             this.close();
         }
     }
@@ -127,55 +153,12 @@ public class FenetreNouvelleAssociation extends Stage {
      * @return true si valide
      */
     private boolean estValide() {
-        if (nomClasseTextArea.getText() == null || nomClasseTextArea.getText().isEmpty()) {
-            erreurLabel.setText("Le nom de classe est obligatoire");
-            return false;
-        }
-        if (!Character.isUpperCase(nomClasseTextArea.getText().charAt(0))) {
-            erreurLabel.setText("La premiere lettre doit etre une majuscule.");
+        if (classe1 == null || classe2 == null) {
+            erreurLabel.setText("Les classes sont obligatoires");
             return false;
         }
         erreurLabel.setText("");
         return true;
     }
-
-    private void ajouterAttribut() {
-        FenetreAjouterAttribut fenetreAjouterAttribut = new FenetreAjouterAttribut();
-        fenetreAjouterAttribut.showAndWait();
-        if (fenetreAjouterAttribut.getAttribut() == null) return;
-        attributsList.getItems().add(fenetreAjouterAttribut.getAttribut());
-    }
-
-    private void modifierAttribut() {
-        if (getSelectedAttribut() == null) return;
-        FenetreModifierAttribut fenetreModifierAttribut = new FenetreModifierAttribut(getSelectedAttribut());
-        fenetreModifierAttribut.showAndWait();
-        Attribut temp = fenetreModifierAttribut.getAttribut();
-        getSelectedAttribut().setNom(temp.getNom());
-        getSelectedAttribut().setType(temp.getType());
-        getSelectedAttribut().setVisibilite(temp.getVisibilite());
-        attributsList.refresh();
-    }
-
-    private void supprimerAttribut() {
-        if (getSelectedAttribut() == null) return;
-        attributsList.getItems().remove(attributsList.getSelectionModel().getSelectedIndex());
-    }
-
-    private void ajouterMethode() {
-        FenetreAjouterMethode fenetreAjouterMethode = new FenetreAjouterMethode();
-        fenetreAjouterMethode.showAndWait();
-        if (fenetreAjouterMethode.getMethode() == null) return;
-        methodesList.getItems().add(fenetreAjouterMethode.getMethode());
-    }
-
-    private void modifierMethode() {
-
-    }
-
-    private void supprimerMethode() {
-        if (getSelectedMethode() == null) return;
-        methodesList.getItems().remove(methodesList.getSelectionModel().getSelectedIndex());
-    }
-	
+    
 }
