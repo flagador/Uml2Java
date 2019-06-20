@@ -1,51 +1,49 @@
 package views;
 
 import javafx.beans.binding.Bindings;
-import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Control;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.Association;
 import models.Attribut;
 import models.Classe;
 import models.Methode;
 
-public class FenetreNouvelleClasse extends Stage {
+public class FenetreNouvelleAssociation extends Stage {
 
-    private Classe classe;
+	private Association association;
 
     private Label erreurLabel = new Label();
 
-    private HBox hBoxNomClasse = new HBox();
-    private Label nomClasseLabel = new Label("Nom de la classe :");
-    private TextField nomClasseTextArea = new TextField();
+    private HBox hBoxNomAssociation = new HBox();
+    private Label nomAssociationLabel = new Label("Nom de la classe :");
+    private TextField nomAssociationTextArea = new TextField();
 
-    private Label attributsLabel = new Label("Attributs :");
-    private ListView<Attribut> attributsList = new ListView<Attribut>();
-    private ButtonBar buttonBarAttribut = new ButtonBar();
-    private Button ajouterAttribut = new Button("Ajouter");
-    private Button modifierAttribut = new Button("Modifier");
-    private Button supprimerAttribut = new Button("Supprimer");
+    private Label classe1Label = new Label("Classe 1 :");
+    private ComboBox<Classe> classe1 = new ComboBox();
+    
 
-    private Label methodesLabel = new Label("Methodes :");
-    private ListView<Methode> methodesList = new ListView<>();
-    private ButtonBar buttonBarMethodes = new ButtonBar();
-    private Button ajouterMethode = new Button("Ajouter");
-    private Button modifierMethode = new Button("Modifier");
-    private Button supprimerMethode = new Button("Supprimer");
-
+    private Label classe2Label = new Label("Classe 2 :");
+    private ComboBox<Classe> classe2 = new ComboBox();
+    
     private ButtonBar buttonBar = new ButtonBar();
     private Button confirmer = new Button("Confirmer");
     private Button annuler = new Button("Annuler");
 
-    public FenetreNouvelleClasse() {
+    public FenetreNouvelleAssociation() {
         this.setTitle("Nouvelle classe");
         this.setResizable(false);
         this.initModality(Modality.APPLICATION_MODAL);
@@ -64,99 +62,57 @@ public class FenetreNouvelleClasse extends Stage {
         
         Font police = Font.loadFont(getClass().getResourceAsStream("Comfortaa-Regular.ttf"), 12);
         Font police2 = Font.loadFont(getClass().getResourceAsStream("Comfortaa-Regular.ttf"), 10);
-        nomClasseLabel.setFont(police);
-        attributsLabel.setFont(police);
-        methodesLabel.setFont(police);
-        ajouterAttribut.setFont(police2);
-        modifierAttribut.setFont(police2);
-        supprimerAttribut.setFont(police2);
-        ajouterMethode.setFont(police2);
-        modifierMethode.setFont(police2);
-        supprimerMethode.setFont(police2);
+        nomAssociationLabel.setFont(police);
+        classe1Label.setFont(police);
+        classe2Label.setFont(police);
         annuler.setFont(police);
         confirmer.setFont(police);
+        erreurLabel.setFont(police);
         
         annuler.getStyleClass().add("annuler");
-        supprimerAttribut.getStyleClass().add("supprimer");
-        supprimerMethode.getStyleClass().add("supprimer");
-
-        buttonBarAttribut.getButtons().addAll(ajouterAttribut, modifierAttribut, supprimerAttribut);
-        buttonBarAttribut.setPrefSize(Control.USE_COMPUTED_SIZE, Control.USE_COMPUTED_SIZE);
-        buttonBarMethodes.getButtons().addAll(ajouterMethode, modifierMethode, supprimerMethode);
-        buttonBarMethodes.setPrefSize(Control.USE_COMPUTED_SIZE, Control.USE_COMPUTED_SIZE);
 
         buttonBar.getButtons().addAll(confirmer, annuler);
 
-        hBoxNomClasse.getChildren().addAll(nomClasseLabel, nomClasseTextArea);
-        hBoxNomClasse.setSpacing(10);
-        root.add(hBoxNomClasse, 0, 0);
+        hBoxNomAssociation.getChildren().addAll(nomAssociationLabel, nomAssociationTextArea);
+        hBoxNomAssociation.setSpacing(10);
+        root.add(hBoxNomAssociation, 0, 0);
         root.add(buttonBar, 1, 4);
 
         // Attributs
-        root.add(attributsLabel, 0, 1);
-        root.add(attributsList, 0, 2);
-        root.add(buttonBarAttribut, 0, 3);
+        root.add(classe1Label, 0, 1);
+        root.add(classe1, 0, 2);
 
         // Methodes
-        root.add(methodesLabel, 1, 1);
-        root.add(methodesList, 1, 2);
-        root.add(buttonBarMethodes, 1, 3);
+        root.add(classe2Label, 1, 1);
+        root.add(classe2, 1, 2);
 
         // Erreur
         erreurLabel.setId("erreur");
         root.add(erreurLabel, 1, 0);
-
-        modifierAttribut.disableProperty().bind(Bindings.isEmpty(attributsList.getSelectionModel().getSelectedItems()));
-        supprimerAttribut.disableProperty().bind(Bindings.isEmpty(attributsList.getSelectionModel().getSelectedItems()));
-
-        modifierMethode.disableProperty().bind(Bindings.isEmpty(methodesList.getSelectionModel().getSelectedItems()));
-        supprimerMethode.disableProperty().bind(Bindings.isEmpty(methodesList.getSelectionModel().getSelectedItems()));
 
         return root;
     }
 
     private void initEvents() {
         confirmer.setOnAction(event -> {
-            creerClasse();
+            creerAssociation();
         });
         annuler.setOnAction(event -> {
             close();
         });
-        ajouterAttribut.setOnAction(event -> {
-            ajouterAttribut();
-        });
-        modifierAttribut.setOnAction(event -> {
-            modifierAttribut();
-        });
-        supprimerAttribut.setOnAction(event -> {
-            supprimerAttribut();
-        });
-        ajouterMethode.setOnAction(event -> {
-            ajouterMethode();
-        });
-        modifierMethode.setOnAction(event -> {
-
-        });
-        supprimerMethode.setOnAction(event -> {
-            supprimerMethode();
-        });
     }
 
-    public Classe getClasse() {
-        return this.classe;
+    public Association getAssociation() {
+        return this.association;
     }
-
-    private Attribut getSelectedAttribut() { return attributsList.getSelectionModel().getSelectedItem(); }
-
-    private Methode getSelectedMethode() { return  methodesList.getSelectionModel().getSelectedItem(); }
 
     /**
-     * Creer une nouvelle classe
+     * Creer une nouvelle association
      */
-    private void creerClasse() {
+    private void creerAssociation() {
         if (estValide()) {
-            classe = new Classe();
-            classe.setNom(nomClasseTextArea.getText());
+            association = new Association(classe1.getSelectionModel().getSelectedItem(), classe2.getSelectionModel().getSelectedItem(), "Association", "af", "af", nomAssociationTextArea.getText());
+            association.setNom(nomAssociationTextArea.getText());
             for (Attribut attribut : attributsList.getItems())
                 classe.getAttributs().add(attribut);
             for (Methode methode : methodesList.getItems())
@@ -221,4 +177,5 @@ public class FenetreNouvelleClasse extends Stage {
         if (getSelectedMethode() == null) return;
         methodesList.getItems().remove(methodesList.getSelectionModel().getSelectedIndex());
     }
+	
 }
