@@ -17,7 +17,7 @@ import models.Visibilite;
 
 import java.util.ArrayList;
 
-public class FenetreAjouterMethode extends Stage {
+public class FenetreModifierMethode extends Stage {
 
     private Methode methode;
 
@@ -48,18 +48,15 @@ public class FenetreAjouterMethode extends Stage {
     private Button annuler = new Button("Annuler");
     private ButtonBar buttonBar = new ButtonBar();
 
-    public FenetreAjouterMethode() {
+    public FenetreModifierMethode(Methode methode) {
+        this.methode = methode;
         this.setTitle("Ajouter Methode");
         this.setResizable(false);
         this.initModality(Modality.APPLICATION_MODAL);
         this.setScene(new Scene(initControls()));
+        afficherMethode();
     }
 
-    /**
-     * Initialize le contenu de la fenetre
-     *
-     * @return le contenu
-     */
     private Parent initControls() {
         VBox root = new VBox();
         root.setSpacing(20.0);
@@ -125,9 +122,14 @@ public class FenetreAjouterMethode extends Stage {
         return parametreListView.getSelectionModel().getSelectedItem();
     }
 
-    /**
-     * Permet la creation d'une nouvelle methode
-     */
+    private void afficherMethode() {
+        if (methode == null) return;
+        textFieldNom.setText(methode.getNom());
+        comboBoxType.setValue(methode.getType());
+        comboBoxVisibilite.setValue(methode.getVisibilite());
+        parametreListView.setItems(FXCollections.observableArrayList(methode.getParametres()));
+    }
+
     private void creerMethode() {
         if (estValide()) {
             methode = new Methode();
@@ -142,11 +144,6 @@ public class FenetreAjouterMethode extends Stage {
         }
     }
 
-    /**
-     * Verifie la validite des entrees
-     *
-     * @return true si correct. false sinon
-     */
     private boolean estValide() {
         if (textFieldNom.getText() == null || textFieldNom.getText().isEmpty() || comboBoxVisibilite.getSelectionModel().getSelectedItem() == null
                 || comboBoxType.getSelectionModel().getSelectedItem() == null) {
@@ -157,9 +154,6 @@ public class FenetreAjouterMethode extends Stage {
         return true;
     }
 
-    /**
-     * Permet la creation d'un parametre
-     */
     private void ajouterParametre() {
         FenetreAjouterParametre fenetreAjouterParametre = new FenetreAjouterParametre();
         fenetreAjouterParametre.showAndWait();
@@ -167,9 +161,6 @@ public class FenetreAjouterMethode extends Stage {
         parametreListView.getItems().add(fenetreAjouterParametre.getParametre());
     }
 
-    /**
-     * Permet la modification du parametre selectionne
-     */
     private void modifierParametre() {
         if (getSelectedParamatre() == null) return;
         FenetreModifierParametre fenetreModifierParametre = new FenetreModifierParametre(getSelectedParamatre());
@@ -181,9 +172,6 @@ public class FenetreAjouterMethode extends Stage {
         parametreListView.refresh();
     }
 
-    /**
-     * Permet la suppression du parametre selectionne
-     */
     private void supprimerParametre() {
         if (getSelectedParamatre() == null) return;
         parametreListView.getItems().remove(parametreListView.getSelectionModel().getSelectedItem());

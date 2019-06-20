@@ -9,6 +9,7 @@ import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import models.Classe;
 import views.controls.ClasseGraphique;
 import views.controls.MenuItem;
 
@@ -55,7 +56,7 @@ public class FenetrePrincipal extends Stage {
         this.setResizable(false);
 
         this.setScene(new Scene(iniControls()));
-        initEvetns();
+        initEvents();
     }
 
     /**
@@ -96,9 +97,12 @@ public class FenetrePrincipal extends Stage {
     /**
      * Initialise les evenements lies aux controls
      */
-    private void initEvetns() {
+    private void initEvents() {
         nouvClasse.setOnAction(event -> {
             nouvelleClasse();
+        });
+
+        nouvAsso.setOnAction(event -> {
         });
 
     }
@@ -115,6 +119,11 @@ public class FenetrePrincipal extends Stage {
             if (event.getClickCount() == 2) {
                 FenetreModifierClasse fenetreModifierClasse = new FenetreModifierClasse(dialog.getClasse());
                 fenetreModifierClasse.showAndWait();
+                Classe temp = fenetreModifierClasse.getClasse();
+                if (temp == null) return;
+                dialog.getClasse().setNom(temp.getNom());
+                dialog.getClasse().setAttributs(temp.getAttributs());
+                dialog.getClasse().setMethodes(temp.getMethodes());
                 classeGraphique.afficherClasse();
             }
 

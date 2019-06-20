@@ -1,5 +1,6 @@
 package views;
 
+import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -8,7 +9,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import models.Attribut;
@@ -45,16 +45,21 @@ public class FenetreModifierClasse extends Stage {
 
     public FenetreModifierClasse(Classe classe) {
         this.classe = classe;
-        this.setTitle("Nouvelle classe");
+        this.setTitle("Modifier classe");
         this.setResizable(false);
         this.initModality(Modality.APPLICATION_MODAL);
 
         this.setScene(new Scene(initControls()));
         this.sizeToScene();
         initEvents();
-        afficherInfo();
+        afficherClasse();
     }
 
+    /**
+     * Construit la fenetre
+     *
+     * @return le contenu de la fenetre
+     */
     private Parent initControls() {
         GridPane root = new GridPane();
         root.setPadding(new Insets(10));
@@ -84,33 +89,95 @@ public class FenetreModifierClasse extends Stage {
         root.add(methodesList, 1, 2);
         root.add(buttonBarMethodes, 1, 3);
 
+        // Erreur
+        erreurLabel.setId("erreur");
+        root.add(erreurLabel, 1, 0);
+
+        annuler.setId("annuler");
+
+        modifierAttribut.disableProperty().bind(Bindings.isEmpty(attributsList.getSelectionModel().getSelectedItems()));
+        supprimerAttribut.disableProperty().bind(Bindings.isEmpty(attributsList.getSelectionModel().getSelectedItems()));
+
+        modifierMethode.disableProperty().bind(Bindings.isEmpty(methodesList.getSelectionModel().getSelectedItems()));
+        supprimerMethode.disableProperty().bind(Bindings.isEmpty(methodesList.getSelectionModel().getSelectedItems()));
 
         return root;
     }
 
+    /**
+     * Initialise les evenements
+     */
     private void initEvents() {
         confirmer.setOnAction(event -> {
-            sauvgarderClasse();
+            modifierClasse();
+        });
+        annuler.setOnAction(event -> {
+            close();
+        });
+        ajouterAttribut.setOnAction(event -> {
+            ajouterAttribut();
+        });
+        modifierAttribut.setOnAction(event -> {
+            modifierAttribut();
+        });
+        supprimerAttribut.setOnAction(event -> {
+            supprimerAttribut();
+        });
+        ajouterMethode.setOnAction(event -> {
+            ajouterMethode();
+        });
+        modifierMethode.setOnAction(event -> {
+            modifierMethode();
+        });
+        supprimerMethode.setOnAction(event -> {
+            supprimerMethode();
         });
     }
 
+    /**
+     * @return la classe en cours de modification
+     */
     public Classe getClasse() {
         return this.classe;
     }
 
-    private void sauvgarderClasse() {
+    /**
+     * @return l'attribut selectionne
+     */
+    private Attribut getSelectedAttribut() {
+        return attributsList.getSelectionModel().getSelectedItem();
+    }
+
+    /**
+     * @return la methode selectionne
+     */
+    private Methode getSelectedMethode() {
+        return methodesList.getSelectionModel().getSelectedItem();
+    }
+
+    /**
+     * Affiche les infos de la classe
+     */
+    private void afficherClasse() {
+        if (classe == null) return;
+        nomClasseTextArea.setText(classe.getNom());
+        attributsList.setItems(FXCollections.observableArrayList(classe.getAttributs()));
+        methodesList.setItems(FXCollections.observableArrayList(classe.getMethodes()));
+    }
+
+    /**
+     * Modifie la classe
+     */
+    private void modifierClasse() {
         if (estValide()) {
             classe = new Classe();
             classe.setNom(nomClasseTextArea.getText());
+            for (Attribut attribut : attributsList.getItems())
+                classe.getAttributs().add(attribut);
+            for (Methode methode : methodesList.getItems())
+                classe.getMethodes().add(methode);
             this.close();
         }
-    }
-
-    private void afficherInfo() {
-        if (classe == null) return;
-        nomClasseTextArea.setText(classe.getNom());
-        attributsList.setItems(FXCollections.observableList(classe.getAttributs()));
-        methodesList.setItems(FXCollections.observableArrayList(classe.getMethodes()));
     }
 
     /**
@@ -120,9 +187,81 @@ public class FenetreModifierClasse extends Stage {
      */
     private boolean estValide() {
         if (nomClasseTextArea.getText() == null || nomClasseTextArea.getText().isEmpty()) {
-            nomClasseTextArea.setText("Le nom de classe est obligatoire");
+            erreurLabel.setText("Le nom de classe est obligatoire");
             return false;
         }
+        if (!Character.isUpperCase(nomClasseTextArea.getText().charAt(0))) {
+            erreurLabel.setText("La premiere lettre doit etre une majuscule.");
+            return false;
+        }
+        erreurLabel.setText("");
         return true;
+    }
+
+    /**
+     * Ajoute un attribut a la classe
+     */
+    private void ajouterAttribut() {
+        FenetreAjouterAttribut fenetreAjouterAttribut = new FenetreAjouterAttribut();
+        fenetreAjouterAttribut.showAndWait();
+        if (fenetreAjouterAttribut.getAttribut() == null) return;
+        attributsList.getItems().add(fenetreAjouterAttribut.getAttribut());
+    }
+
+    /**
+     * Modifi l'attribut selectionne
+     */
+    private void modifierAttribut() {
+        if (getSelectedAttribut() == null) return;
+        FenetreModifierAttribut fenetreModifierAttribut = new FenetreModifierAttribut(getSelectedAttribut());
+        fenetreModifierAttribut.showAndWait();
+        if (fenetreModifierAttribut.getAttribut() == null) return;
+        Attribut temp = fenetreModifierAttribut.getAttribut();
+        getSelectedAttribut().setNom(temp.getNom());
+        getSelectedAttribut().setType(temp.getType());
+        getSelectedAttribut().setVisibilite(temp.getVisibilite());
+        attributsList.refresh();
+    }
+
+    /**
+     * Supprimer l'atribut selectionne
+     */
+    private void supprimerAttribut() {
+        if (getSelectedAttribut() == null) return;
+        attributsList.getItems().remove(attributsList.getSelectionModel().getSelectedIndex());
+    }
+
+    /**
+     * Ajoute une methode a la classe
+     */
+    private void ajouterMethode() {
+        FenetreAjouterMethode fenetreAjouterMethode = new FenetreAjouterMethode();
+        fenetreAjouterMethode.showAndWait();
+        if (fenetreAjouterMethode.getMethode() == null) return;
+        methodesList.getItems().add(fenetreAjouterMethode.getMethode());
+    }
+
+    /**
+     * Modifi la methode selectionne
+     */
+    private void modifierMethode() {
+        if (getSelectedMethode() == null) return;
+        FenetreModifierMethode fenetreModifierMethode = new FenetreModifierMethode(getSelectedMethode());
+        fenetreModifierMethode.showAndWait();
+        if (fenetreModifierMethode.getMethode() == null) return;
+        Methode temp = fenetreModifierMethode.getMethode();
+        getSelectedMethode().setNom(temp.getNom());
+        getSelectedMethode().setParametres(temp.getParametres());
+        getSelectedMethode().setType(temp.getType());
+        getSelectedMethode().setVisibilite(temp.getVisibilite());
+        methodesList.refresh();
+    }
+
+    /**
+     * Supprime la methode selectionne
+     */
+    private void supprimerMethode() {
+        if (getSelectedMethode() == null) return;
+        methodesList.getItems().remove(methodesList.getSelectionModel().getSelectedIndex());
     }
 }

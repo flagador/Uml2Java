@@ -21,4 +21,20 @@ public class Parametre {
     public String getNom() {
         return nom;
     }
+
+    public void setType(Type type) {
+        this.type = type;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public String toJava() {
+        return type.getNom() + " " + nom;
+    }
+
+    public String toString() {
+        return toJava();
+    }
 }

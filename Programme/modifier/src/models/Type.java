@@ -12,7 +12,7 @@ public enum Type {
     LONG("long"),
     // FLottant
     FLOAT("float"),
-    DOUbLE("double");
+    DOUBLE("double");
 
     private String nom;
 
