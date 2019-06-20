@@ -74,7 +74,6 @@ public class FenetreAjouterMethode extends Stage {
         typeMethode.setFont(police);
         ajouterParametre.setFont(police);
         parametresLabel.setFont(police);
-        editParametre.setFont(police);
         supprimerParametre.setFont(police);
         visibiliteMethode.setFont(police);
         annuler.setFont(police);

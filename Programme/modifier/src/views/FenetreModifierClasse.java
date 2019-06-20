@@ -9,11 +9,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-<<<<<<< HEAD
-=======
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
->>>>>>> 828d4f49ecac6fb846a4b963718c98ef0998ef23
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import models.Attribut;

@@ -11,11 +11,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-<<<<<<< HEAD
 import model.Classe;
-=======
-import models.Classe;
->>>>>>> b25da712f09e52421303110f16b8d36193ede580
 import views.controls.ClasseGraphique;
 import views.controls.MenuItem;
 import ressources.fonts.*;
@@ -149,7 +145,7 @@ public class FenetrePrincipal extends Stage {
             if (event.getClickCount() == 2) {
                 FenetreModifierClasse fenetreModifierClasse = new FenetreModifierClasse(dialog.getClasse());
                 fenetreModifierClasse.showAndWait();
-                Classe temp = fenetreModifierClasse.getClasse();
+                models.Classe temp = fenetreModifierClasse.getClasse();
                 if (temp == null) return;
                 dialog.getClasse().setNom(temp.getNom());
                 dialog.getClasse().setAttributs(temp.getAttributs());
