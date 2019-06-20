@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import models.*;
@@ -56,6 +57,19 @@ public class FenetreAjouterMethode extends Stage {
 
         buttonBar.setPadding(new Insets(0.0));
         buttonBar.setPrefSize(Control.USE_COMPUTED_SIZE, Control.USE_COMPUTED_SIZE);
+        
+        Font police = Font.loadFont(getClass().getResourceAsStream("Comfortaa-Regular.ttf"), 12);
+        nomMethode.setFont(police);
+        typeMethode.setFont(police);
+        ajouterParametre.setFont(police);
+        parametresLabel.setFont(police);
+        editParametre.setFont(police);
+        supprimerParametre.setFont(police);
+        visibiliteMethode.setFont(police);
+        annuler.setFont(police);
+        confirmer.setFont(police);
+        
+        annuler.getStyleClass().add("annuler");
 
         comboBoxVisibilite.setItems(FXCollections.observableArrayList(Visibilite.values()));
         comboBoxType.setItems(FXCollections.observableArrayList(Type.values()));
