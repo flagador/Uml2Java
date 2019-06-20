@@ -129,6 +129,7 @@ public class FenetreNouvelleClasse extends Stage {
         hBoxBoutonsMethodes.setMargin(modifierMethode, new Insets(5));
         hBoxBoutonsMethodes.setMargin(supprimerMethode, new Insets(5));
         hBoxNomClasse.setMargin(classeLabel, new Insets(5));
+        
 
         hBoxNomClasse.getChildren().addAll(classeLabel, classeTextArea);
 
@@ -225,6 +226,21 @@ public class FenetreNouvelleClasse extends Stage {
 
         confirmer.setOnAction(event -> {
             ajouterClasse();
+            
+            int i = 0;
+            
+            for(i = 0; i < attributsList.getItems().size(); i++) {
+            	
+            	classe.ajoutAttribut(attributsList.getItems().get(i));
+    			
+    		}
+            
+            for(i = 0; i < methodesList.getItems().size(); i++) {
+            	
+            	classe.ajoutMethode(methodesList.getItems().get(i));
+    			
+    		}
+            
         });
     }
 
@@ -241,6 +257,13 @@ public class FenetreNouvelleClasse extends Stage {
             classe.setNom(classeTextArea.getText());
             Classe_ classe_ = new Classe_(classe);
             zoneUML.getChildren().add(classe_);
+            
+            uml.items = FXCollections.observableArrayList(classe);
+            
+        	uml.getClasseList().getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        	
+        	uml.getClasseList().getItems().add(classe);
+            
 //            zoneJava.setText(classe.traductionJava());
 //            System.out.println(zoneJava);
             

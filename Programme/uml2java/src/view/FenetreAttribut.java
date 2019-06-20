@@ -122,8 +122,6 @@ public class FenetreAttribut extends Stage {
         	attribut.setVisibilite(comboBoxVisibilite.getValue());
         	attribut.setType(comboBoxType.getValue());
         	
-        	//classe.getAttributs().add(attribut);
-        	
         	fenetreNouvelleClasse.items = FXCollections.observableArrayList(attribut);
             
         	fenetreNouvelleClasse.getAttributsList().getSelectionModel().setSelectionMode(SelectionMode.SINGLE);

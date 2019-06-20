@@ -1,5 +1,6 @@
 package view;
 
+import javafx.collections.ObservableList;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -41,8 +42,19 @@ public class Uml2Java extends Stage {
 
     private ContextMenu contextMenu = new ContextMenu();
 
+    private ListView<Classe> classeList = new ListView<Classe>();
+    ObservableList <Classe> items;
+    
     private Button nouvClasse = new Button("Classe");
-    private Button nouvAsso = new Button("Association");
+    public ListView<Classe> getClasseList() {
+		return classeList;
+	}
+
+	public void setClasseList(ListView<Classe> classeList) {
+		this.classeList = classeList;
+	}
+
+	private Button nouvAsso = new Button("Association");
     private Button nouvGene = new Button("Generalisation");
     private Button nouvDep = new Button("Dependance");
 
@@ -102,8 +114,36 @@ public class Uml2Java extends Stage {
             nouvelleClasse();
             //System.out.print("InitEvent");
         });
+        
+        nouvAsso.setOnMouseClicked(e -> {
+            nouvelleAssociation();
+            //System.out.print("InitEvent");
+        });
     }
 
+    private void nouvelleAssociation() {
+        // Execute lors de la creation d'une nouvelle classe
+    	//System.out.println("nouvelleClasse");
+        FenetreAssociation fenetreAssociation = new FenetreAssociation(this);
+        //fenetreAssociation.setZoneUML(umlPane);
+        //fenetreNouvelleClasse.setZoneJava(javaCode);
+        //javaCode = new TextArea(fenetreNouvelleClasse.getTextJ().setText(trad(getClasse())));
+        
+        try {
+        	
+        	this.javaCode = new TextArea(fenetreAssociation.trad(fenetreAssociation.getClasse()));
+        	
+        } catch (Exception e) {
+        	
+        	System.out.println("Exception");
+        	
+        }
+        
+        fenetreAssociation.show();
+        
+    }
+    
+    
     private void nouvelleClasse() {
         // Execute lors de la creation d'une nouvelle classe
     	//System.out.println("nouvelleClasse");
