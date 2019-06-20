@@ -7,14 +7,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import models.Parametre;
 import models.Type;
 
-public class FenetreAjouterParametre extends Stage {
-
+public class FenetreModifierParametre extends Stage {
     private Parametre parametre;
 
     private Label nomLabel = new Label("Nom : ");
@@ -30,13 +28,14 @@ public class FenetreAjouterParametre extends Stage {
     private Button confirmer = new Button("Confirmer");
     private Button annuler = new Button("Annuler");
 
-    public FenetreAjouterParametre() {
-        this.setTitle("Ajouter Parametre");
+    public FenetreModifierParametre(Parametre parametre) {
+        this.parametre = parametre;
+        this.setTitle("Modifier Parametre");
         this.setResizable(false);
         this.initModality(Modality.APPLICATION_MODAL);
 
         this.setScene(new Scene(initControls()));
-
+        afficherParametre();
     }
 
     /**
@@ -52,15 +51,6 @@ public class FenetreAjouterParametre extends Stage {
         erreurLabel.setId("erreur");
         annuler.setId("annuler");
 
-        Font police = Font.loadFont(getClass().getResourceAsStream("Comfortaa-Regular.ttf"), 12);
-        annuler.setFont(police);
-        confirmer.setFont(police);    
-        nomLabel.setFont(police);
-        typeLabel.setFont(police);
-        erreurLabel.setFont(police);
-        
-        annuler.getStyleClass().add("annuler");
-        
         typeComboBox.setItems(FXCollections.observableArrayList(Type.values()));
 
         nomBox.getChildren().addAll(nomLabel, nomTextField);
@@ -71,7 +61,7 @@ public class FenetreAjouterParametre extends Stage {
         root.getChildren().addAll(nomBox, typeBox, erreurLabel, buttonBar);
 
         confirmer.setOnAction(event -> {
-            creerParametre();
+            modifierParametre();
         });
         annuler.setOnAction(event -> {
             close();
@@ -89,11 +79,19 @@ public class FenetreAjouterParametre extends Stage {
     }
 
     /**
-     * Permet la creation d'un nouveau parametre
+     * Affiche le contenu du parametre
      */
-    private void creerParametre() {
+    private void afficherParametre() {
+        if (parametre == null) return;
+        nomTextField.setText(parametre.getNom());
+        typeComboBox.setValue(parametre.getType());
+    }
+
+    /**
+     * Permet la modification du parametre
+     */
+    private void modifierParametre() {
         if (estValide()) {
-            parametre = new Parametre();
             parametre.setNom(nomTextField.getText());
             parametre.setType(typeComboBox.getValue());
             close();

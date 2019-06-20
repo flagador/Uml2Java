@@ -33,9 +33,6 @@ public class FenetreModifierAttribut extends Stage {
     private HBox hBoxVisibilite = new HBox();
     private VBox vBox = new VBox();
 
-    private String[] visibilites = {"public", "private", "protected"};
-    private String[] types = {"float", "boolean", "String", "int", "double"};
-
     private Button confirmer = new Button("Confirmer");
     private Button annuler = new Button("Annuler");
     private ButtonBar buttonBar = new ButtonBar();
@@ -49,6 +46,11 @@ public class FenetreModifierAttribut extends Stage {
         afficherAttribut();
     }
 
+    /**
+     * Initialize le contenu de la fenetre
+     *
+     * @return le contenu
+     */
     private Parent initControls() {
         VBox root = new VBox();
         root.setSpacing(20.0);
@@ -79,6 +81,7 @@ public class FenetreModifierAttribut extends Stage {
         vBox.setSpacing(10.0);
 
         erreurLabel.setId("erreur");
+        annuler.setId("annuler");
 
         buttonBar.getButtons().addAll(confirmer, annuler);
 
@@ -95,19 +98,29 @@ public class FenetreModifierAttribut extends Stage {
         return root;
     }
 
+    /**
+     * Gets attribut.
+     *
+     * @return l'attribut
+     */
     public Attribut getAttribut() {
         return attribut;
     }
 
+    /**
+     * Affiche les info de l'attribut
+     */
     private void afficherAttribut() {
         textFieldNom.setText(attribut.getNom());
         comboBoxType.getSelectionModel().select(attribut.getType());
         comboBoxVisibilite.getSelectionModel().select(attribut.getVisibilite());
     }
 
+    /**
+     * Permet la modification d'un attribut
+     */
     private void creerAttribut() {
         if (estValide()) {
-            attribut = new Attribut();
             attribut.setNom(textFieldNom.getText());
             attribut.setVisibilite(comboBoxVisibilite.getValue());
             attribut.setType(comboBoxType.getValue());
@@ -115,6 +128,11 @@ public class FenetreModifierAttribut extends Stage {
         }
     }
 
+    /**
+     * Verifie la validite des entrees
+     *
+     * @return true si correct. false sinon
+     */
     private boolean estValide() {
         if (textFieldNom.getText() == null || textFieldNom.getText().isEmpty() || comboBoxVisibilite.getSelectionModel().getSelectedItem() == null
                 || comboBoxType.getSelectionModel().getSelectedItem() == null) {

@@ -47,6 +47,11 @@ public class FenetreAjouterAttribut extends Stage {
         this.setScene(new Scene(initControls()));
     }
 
+    /**
+     * Initialize le contenu de la fenetre
+     *
+     * @return le contenu
+     */
     private Parent initControls() {
         VBox root = new VBox();
         root.setSpacing(20.0);
@@ -77,6 +82,7 @@ public class FenetreAjouterAttribut extends Stage {
         vBox.setSpacing(10.0);
 
         erreurLabel.setId("erreur");
+        annuler.setId("annuler");
 
         buttonBar.getButtons().addAll(confirmer, annuler);
 
@@ -93,10 +99,18 @@ public class FenetreAjouterAttribut extends Stage {
         return root;
     }
 
+    /**
+     * Gets attribut.
+     *
+     * @return l'attribut
+     */
     public Attribut getAttribut() {
         return attribut;
     }
 
+    /**
+     * Permet la creation d'un nouvel attribut
+     */
     private void creerAttribut() {
         if (estValide()) {
             attribut = new Attribut();
@@ -107,6 +121,11 @@ public class FenetreAjouterAttribut extends Stage {
         }
     }
 
+    /**
+     * Verifie la validite des entrees
+     *
+     * @return true si correct. false sinon
+     */
     private boolean estValide() {
         if (textFieldNom.getText() == null || textFieldNom.getText().isEmpty() || comboBoxVisibilite.getSelectionModel().getSelectedItem() == null
                 || comboBoxType.getSelectionModel().getSelectedItem() == null) {

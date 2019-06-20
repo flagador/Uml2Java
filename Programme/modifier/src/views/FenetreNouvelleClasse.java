@@ -1,7 +1,6 @@
 package views;
 
 import javafx.beans.binding.Bindings;
-import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
@@ -9,8 +8,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+<<<<<<< HEAD
+=======
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
+>>>>>>> 828d4f49ecac6fb846a4b963718c98ef0998ef23
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import models.Attribut;
@@ -55,6 +57,11 @@ public class FenetreNouvelleClasse extends Stage {
         initEvents();
     }
 
+    /**
+     * Construit la fenetre
+     *
+     * @return le contenu de la fenetre
+     */
     private Parent initControls() {
         GridPane root = new GridPane();
         root.setPadding(new Insets(10));
@@ -106,6 +113,8 @@ public class FenetreNouvelleClasse extends Stage {
         erreurLabel.setId("erreur");
         root.add(erreurLabel, 1, 0);
 
+        annuler.setId("annuler");
+
         modifierAttribut.disableProperty().bind(Bindings.isEmpty(attributsList.getSelectionModel().getSelectedItems()));
         supprimerAttribut.disableProperty().bind(Bindings.isEmpty(attributsList.getSelectionModel().getSelectedItems()));
 
@@ -115,6 +124,9 @@ public class FenetreNouvelleClasse extends Stage {
         return root;
     }
 
+    /**
+     * Initialise les evenements
+     */
     private void initEvents() {
         confirmer.setOnAction(event -> {
             creerClasse();
@@ -135,20 +147,33 @@ public class FenetreNouvelleClasse extends Stage {
             ajouterMethode();
         });
         modifierMethode.setOnAction(event -> {
-
+            modifierMethode();
         });
         supprimerMethode.setOnAction(event -> {
             supprimerMethode();
         });
     }
 
+    /**
+     * @return la classe en cours de creation
+     */
     public Classe getClasse() {
         return this.classe;
     }
 
-    private Attribut getSelectedAttribut() { return attributsList.getSelectionModel().getSelectedItem(); }
+    /**
+     * @return l'attribut selectionne
+     */
+    private Attribut getSelectedAttribut() {
+        return attributsList.getSelectionModel().getSelectedItem();
+    }
 
-    private Methode getSelectedMethode() { return  methodesList.getSelectionModel().getSelectedItem(); }
+    /**
+     * @return la methode selectionne
+     */
+    private Methode getSelectedMethode() {
+        return methodesList.getSelectionModel().getSelectedItem();
+    }
 
     /**
      * Creer une nouvelle classe
@@ -183,6 +208,9 @@ public class FenetreNouvelleClasse extends Stage {
         return true;
     }
 
+    /**
+     * Ajoute un attribut a la classe
+     */
     private void ajouterAttribut() {
         FenetreAjouterAttribut fenetreAjouterAttribut = new FenetreAjouterAttribut();
         fenetreAjouterAttribut.showAndWait();
@@ -190,10 +218,14 @@ public class FenetreNouvelleClasse extends Stage {
         attributsList.getItems().add(fenetreAjouterAttribut.getAttribut());
     }
 
+    /**
+     * Modifi l'attribut selectionne
+     */
     private void modifierAttribut() {
         if (getSelectedAttribut() == null) return;
         FenetreModifierAttribut fenetreModifierAttribut = new FenetreModifierAttribut(getSelectedAttribut());
         fenetreModifierAttribut.showAndWait();
+        if (fenetreModifierAttribut.getAttribut() == null) return;
         Attribut temp = fenetreModifierAttribut.getAttribut();
         getSelectedAttribut().setNom(temp.getNom());
         getSelectedAttribut().setType(temp.getType());
@@ -201,11 +233,17 @@ public class FenetreNouvelleClasse extends Stage {
         attributsList.refresh();
     }
 
+    /**
+     * Supprimer l'atribut selectionne
+     */
     private void supprimerAttribut() {
         if (getSelectedAttribut() == null) return;
         attributsList.getItems().remove(attributsList.getSelectionModel().getSelectedIndex());
     }
 
+    /**
+     * Ajoute une methode a la classe
+     */
     private void ajouterMethode() {
         FenetreAjouterMethode fenetreAjouterMethode = new FenetreAjouterMethode();
         fenetreAjouterMethode.showAndWait();
@@ -213,10 +251,25 @@ public class FenetreNouvelleClasse extends Stage {
         methodesList.getItems().add(fenetreAjouterMethode.getMethode());
     }
 
+    /**
+     * Modifi la methode selectionne
+     */
     private void modifierMethode() {
-
+        if (getSelectedMethode() == null) return;
+        FenetreModifierMethode fenetreModifierMethode = new FenetreModifierMethode(getSelectedMethode());
+        fenetreModifierMethode.showAndWait();
+        if (fenetreModifierMethode.getMethode() == null) return;
+        Methode temp = fenetreModifierMethode.getMethode();
+        getSelectedMethode().setNom(temp.getNom());
+        getSelectedMethode().setParametres(temp.getParametres());
+        getSelectedMethode().setType(temp.getType());
+        getSelectedMethode().setVisibilite(temp.getVisibilite());
+        methodesList.refresh();
     }
 
+    /**
+     * Supprime la methode selectionne
+     */
     private void supprimerMethode() {
         if (getSelectedMethode() == null) return;
         methodesList.getItems().remove(methodesList.getSelectionModel().getSelectedIndex());

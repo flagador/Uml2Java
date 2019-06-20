@@ -1,5 +1,9 @@
 package views.controls;
 
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Control;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -20,15 +24,25 @@ public class ClasseGraphique extends VBox {
     private double orgSceneX, orgSceneY;
     private double orgTranslateX, orgTranslateY;
 
+    private double centreX;
+    private double centreY;
+
     public ClasseGraphique(Classe classe) {
         this.classe = classe;
-        this.setId("classe");
+
         initControls();
         afficherClasse();
         initEvents();
     }
 
     private void initControls() {
+        attributList.setId("classe");
+        attributList.setPadding(new Insets(2.0));
+        methodeList.setId("classe");
+        methodeList.setPadding(new Insets(2.0));
+        this.setId("classe");
+        this.setPadding(new Insets(4.0));
+        this.setAlignment(Pos.CENTER);
         this.getChildren().addAll(nomClasse, attributList, methodeList);
     }
 
@@ -49,11 +63,12 @@ public class ClasseGraphique extends VBox {
             System.out.println(newTranslateX);
             System.out.println(newTranslateY);
 
-            // if ((newTranslateX > 0 && newTranslateX < Principale.getMaxX()) && (newTranslateY > 0 && newTranslateY < Principale.getMaxY())) {
+
             ((VBox) (event.getSource())).setTranslateX(newTranslateX);
             ((VBox) (event.getSource())).setTranslateY(newTranslateY);
-            // }
 
+            centreX = event.getSceneX() + (event.getX() / 2.0);
+            centreY = event.getSceneY() + (event.getY() / 2.0);
         });
     }
 
@@ -66,4 +81,11 @@ public class ClasseGraphique extends VBox {
         for (Methode methode : classe.getMethodes()) methodeList.getChildren().addAll(new Text(methode.toString()));
     }
 
+    public double getCentreX() {
+        return centreX;
+    }
+
+    public double getCentreY() {
+        return centreY;
+    }
 }
