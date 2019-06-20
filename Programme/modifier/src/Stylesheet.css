@@ -1,10 +1,7 @@
 #classe {
 	-fx-background-color: #DDE5FF;
-}
-
-#classe > .vBox {
 	-fx-border-style: solid;
-	-fx-border-width: 2;
+	-fx-border-width: 1;
 	-fx-border-color: red;
 }
 
@@ -31,17 +28,17 @@
 	-fx-margin-right : 20px;
 }
 
-.annuler {
+#annuler {
 	-fx-background-color: #A80505;
 	-fx-text-fill : #ffffff;
 }
 
-.supprimer {
+#supprimer {
 	-fx-background-color: #E83400;
 	-fx-text-fill : #ffffff;
 }
 
-.vBoxAttributsClasse {
+#vBoxAttributsClasse {
 	-fx-margin-right : 20px;
 }
 

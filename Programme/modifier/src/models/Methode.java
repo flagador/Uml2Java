@@ -11,7 +11,7 @@ public class Methode {
     private String contenuMethode;
 
     public Methode() {
-
+        parametres = new ArrayList<>();
     }
 
 	/**
@@ -67,9 +67,10 @@ public class Methode {
 	public void setContenuMethode(String contenuMethode) {
 		this.contenuMethode = contenuMethode;
 	}
-	
+	/*
     public String toJava() {
     	String trad = "";
+
     	trad+=this.visibilite+" "+this.type+" "+this.nom+"(";
     	if (this.parametres.size()<=1) {
     		trad+=this.parametres.get(0).getType()+" "+this.parametres.get(0).getNom();
@@ -84,6 +85,22 @@ public class Methode {
     	trad+=this.contenuMethode;
     	trad+="\r\n}\r\n";
     	return trad;
+    }
+*/
+	public String toJava() {
+        String trad = "";
+        trad += visibilite.getNom() + " " + type.getNom() + " " + nom + "(";
+        for (Parametre parametre : parametres) {
+            trad += parametre.toJava() + ",";
+        }
+        if (!parametres.isEmpty())
+            trad = trad.substring(0, trad.length() - 1);
+        trad += ") {\n}";
+        return trad;
+    }
+
+    public String toString() {
+        return toJava();
     }
 
 }

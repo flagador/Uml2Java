@@ -49,10 +49,10 @@ public class Attribut {
     }
     
     public String toJava() {
-    	return getVisibilite() +" "+ getType() +" " +getNom() + ";";
+    	return toJava();
     }
 
-    public String toString() { return getVisibilite() +" "+ getType() +" " +getNom(); }
+    public String toString() { return getVisibilite().getNom() +" "+ getType().getNom() +" " +getNom(); }
     
     public String getterSetter() {
     	String getset ="";
