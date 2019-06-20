@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import models.Parametre;
@@ -51,6 +52,15 @@ public class FenetreAjouterParametre extends Stage {
         erreurLabel.setId("erreur");
         annuler.setId("annuler");
 
+        Font police = Font.loadFont(getClass().getResourceAsStream("Comfortaa-Regular.ttf"), 12);
+        annuler.setFont(police);
+        confirmer.setFont(police);    
+        nomLabel.setFont(police);
+        typeLabel.setFont(police);
+        erreurLabel.setFont(police);
+        
+        annuler.getStyleClass().add("annuler");
+        
         typeComboBox.setItems(FXCollections.observableArrayList(Type.values()));
 
         nomBox.getChildren().addAll(nomLabel, nomTextField);

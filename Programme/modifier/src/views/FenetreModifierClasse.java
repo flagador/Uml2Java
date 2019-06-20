@@ -9,6 +9,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+<<<<<<< HEAD
+=======
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+>>>>>>> 828d4f49ecac6fb846a4b963718c98ef0998ef23
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import models.Attribut;
@@ -66,6 +71,24 @@ public class FenetreModifierClasse extends Stage {
         root.setHgap(10);
         root.setVgap(10);
         root.setAlignment(Pos.CENTER);
+        
+        Font police = Font.loadFont(getClass().getResourceAsStream("Comfortaa-Regular.ttf"), 12);
+        Font police2 = Font.loadFont(getClass().getResourceAsStream("Comfortaa-Regular.ttf"), 10);
+        nomClasseLabel.setFont(police);
+        attributsLabel.setFont(police);
+        methodesLabel.setFont(police);
+        ajouterAttribut.setFont(police2);
+        modifierAttribut.setFont(police2);
+        supprimerAttribut.setFont(police2);
+        ajouterMethode.setFont(police2);
+        modifierMethode.setFont(police2);
+        supprimerMethode.setFont(police2);
+        annuler.setFont(police);
+        confirmer.setFont(police);
+        
+        annuler.getStyleClass().add("annuler");
+        supprimerAttribut.getStyleClass().add("supprimer");
+        supprimerMethode.getStyleClass().add("supprimer");
 
         buttonBarAttribut.getButtons().addAll(ajouterAttribut, modifierAttribut, supprimerAttribut);
         buttonBarAttribut.setPrefSize(Control.USE_COMPUTED_SIZE, Control.USE_COMPUTED_SIZE);

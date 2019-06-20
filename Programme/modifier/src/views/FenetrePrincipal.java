@@ -8,10 +8,12 @@ import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import models.Classe;
 import views.controls.ClasseGraphique;
 import views.controls.MenuItem;
+import ressources.fonts.*;
 
 public class FenetrePrincipal extends Stage {
 
@@ -67,6 +69,21 @@ public class FenetrePrincipal extends Stage {
     private Parent iniControls() {
         BorderPane root = new BorderPane();
 
+        // Police et couleur
+        Font police = Font.loadFont(getClass().getResourceAsStream("Comfortaa-Regular.ttf"), 12);
+        javaCode.setFont(police);
+        nouvClasse.setFont(police);
+        nouvAsso.setFont(police);
+        nouvGene.setFont(police);
+        nouvDep.setFont(police);
+        
+        umlToolBar.setId("menuColor");
+        umlTab.setId("menuColor");
+        javaTab.setId("javaMenu");
+        root.setId("rootColor");
+        rootUml.setId("rootColor");
+        zoneDessin.setId("rootColor");
+        
         // Top
         menuFicher.getItems().addAll(nouveau, enregistrer, ouvrir, quitter);
         menuAide.getItems().addAll(aide, aPropos);
