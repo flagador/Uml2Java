@@ -64,7 +64,7 @@ public class Classe {
 
     public void ajoutAttribut(Attribut a) {
 
-        attributs.add(a);
+        this.attributs.add(a);
 
     }
 
@@ -110,12 +110,14 @@ public class Classe {
         String getSet = "";
         String methodes = "";
 		
-        
-        for ( int i = 0; i <this.relations.size(); i++) {
-        	if (this.relations.get(i).getType().equals("association")) {
-        		this.relations.get(i).toJava();
-        	}
+        if(relations.size()!=0) {
+            for ( int i = 0; i <this.relations.size(); i++) {
+            	if (this.relations.get(i).getType().equals("association")) {
+            		this.relations.get(i).toJava();
+            	}
+            }
         }
+
 	/*	for (int i = 0; i < properties.size(); i++) {
 			if(properties.get(i) == ClassProperty.ABSTRACT)
 				entete += ClassProperty.ABSTRACT.javaText();

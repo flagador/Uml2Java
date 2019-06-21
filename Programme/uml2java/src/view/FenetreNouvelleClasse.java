@@ -272,7 +272,6 @@ public class FenetreNouvelleClasse extends Stage {
             
             //uml.getJavaCode() = new TextArea(trad(classe));
             
-            
             close();
         }
     }
@@ -304,6 +303,4 @@ public class FenetreNouvelleClasse extends Stage {
 
         return true;
     }
-    
-
 }
