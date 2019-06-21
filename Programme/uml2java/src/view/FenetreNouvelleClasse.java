@@ -63,7 +63,6 @@ public class FenetreNouvelleClasse extends Stage {
     private Button annuler = new Button("Annuler");
 
     public FenetreNouvelleClasse(Uml2Java uml) {
-        this.classe = new Classe();
         this.uml = uml;
         this.setTitle("Classe");
         this.setResizable(false);
@@ -240,7 +239,9 @@ public class FenetreNouvelleClasse extends Stage {
             	classe.ajoutMethode(methodesList.getItems().get(i));
     			
     		}
-            
+
+    		this.uml.getJavaCode().appendText(this.trad(classe));
+
         });
     }
 
@@ -253,8 +254,8 @@ public class FenetreNouvelleClasse extends Stage {
     }
 
     private void ajouterClasse() {
+        this.classe = new Classe(classeTextArea.getText());
         if (estValide() && zoneUML != null) {
-            classe.setNom(classeTextArea.getText());
             Classe_ classe_ = new Classe_(classe);
             zoneUML.getChildren().add(classe_);
             

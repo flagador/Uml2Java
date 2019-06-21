@@ -19,14 +19,13 @@ public class Methode {
      * @param variables
      */
     
-    public Methode() {}
-    
     public Methode(String nom, String visibilite, String type, ArrayList<Attribut> attributs, String contenuMethode) {
         this.nom = nom;
         this.visibilite = visibilite;
         this.type = type;
         this.attributs = attributs;
         this.contenuMethode = contenuMethode;
+        this.attributs = new ArrayList<>();
     }
 
 	public String getNom() {
@@ -76,12 +75,14 @@ public class Methode {
     public String toJava() {
     	String trad = "";
     	trad+=this.visibilite+" "+this.type+" "+this.nom+"(";
-        	for (int i=0; i<this.attributs.size();i++) {
-        		trad+=this.attributs.get(i).getType()+" "+this.attributs.get(i).getNom();
-        		if(i < this.attributs.size()-1) {
-        			trad+= ", ";
-        		}
-        	}
+
+        for (int i=0; i<this.attributs.size();i++) {
+            trad+=this.attributs.get(i).getType()+" "+this.attributs.get(i).getNom();
+            if(i < this.attributs.size()-1) {
+                trad+= ", ";
+            }
+        }
+
     	trad+=") {\r\n";
     	trad+=this.contenuMethode;
     	trad+="\r\n}\r\n";

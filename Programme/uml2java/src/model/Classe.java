@@ -11,10 +11,7 @@ public class Classe {
 
     private ArrayList<ClassProperty> properties;
 
-    public Classe() {}
-
     public Classe(String nom) {
-        super();
         this.nom = nom;
         attributs = new ArrayList<Attribut>();
         methodes = new ArrayList<Methode>();
@@ -170,7 +167,7 @@ public class Classe {
         Classe Voiture = new Classe("Voiture");
         Classe Porsche911GT3RS = new Classe("Porsche911GT3RS");
         Generalisation generalisation = new Generalisation("generalisation", Voiture, Porsche911GT3RS);
-        Association association = new Association(Voiture, Porsche911GT3RS, "association", "1", "1", "concurrence");
+        Association association = new Association(Voiture, Porsche911GT3RS,"1", "1", "concurrence");
         association.ajoutAssociation();
         generalisation.ajoutGeneralisation();
         Methode puissanceFiscale = new Methode("puissanceFiscale", "Public", "float", Voiture.attributs, "return this.puissanceMoteur/10;");

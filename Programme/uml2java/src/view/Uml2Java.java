@@ -38,7 +38,7 @@ public class Uml2Java extends Stage {
     private BorderPane rootUml = new BorderPane();
     private Pane       umlPane = new Pane();
 
-    private TextArea javaCode = new TextArea("Code Java...");
+    private TextArea javaCode = new TextArea("");
 
     private ContextMenu contextMenu = new ContextMenu();
 
@@ -152,15 +152,15 @@ public class Uml2Java extends Stage {
         //fenetreNouvelleClasse.setZoneJava(javaCode);
         //javaCode = new TextArea(fenetreNouvelleClasse.getTextJ().setText(trad(getClasse())));
         
-        try {
+//        try {
         	
-        	this.javaCode = new TextArea(fenetreNouvelleClasse.trad(fenetreNouvelleClasse.getClasse()));
+//        	this.javaCode = new TextArea(fenetreNouvelleClasse.trad(fenetreNouvelleClasse.getClasse()));
         	
-        } catch (Exception e) {
-        	
-        	System.out.println("Exception");
-        	
-        }
+//        } catch (Exception e) {
+//
+//        	System.out.println("Exception");
+//
+//        }
         
         fenetreNouvelleClasse.show();
         

@@ -42,7 +42,7 @@ public class FenetreAssociation extends Stage {
     private Button annuler = new Button("Annuler");
 
     public FenetreAssociation(Uml2Java uml) {
-        this.classe = new Classe();
+        this.classe = new Classe("temp");
         this.uml = uml;
         this.setTitle("Association");
         this.setResizable(false);
@@ -112,13 +112,12 @@ public class FenetreAssociation extends Stage {
         });
 
         confirmer.setOnAction(event -> {
-            ajouterClasse();
-            
-            Classe c = new Classe();
-        	Classe c2 = new Classe();
+            Classe c;
+        	Classe c2;
         	
         	c = classe1.getSelectionModel().getSelectedItem();
         	c2= classe2.getSelectionModel().getSelectedItem();
+        	association = new Association(c,c2,"1","1","Libellé");
 
         	c.ajoutRelation(association);
         	c2.ajoutRelation(association);
@@ -127,6 +126,7 @@ public class FenetreAssociation extends Stage {
         	association.setClasseDest(c2);
 
         	association.ajoutAssociation();
+            ajouterClasse();
         });
     }
 

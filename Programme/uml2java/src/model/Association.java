@@ -9,8 +9,8 @@ public class Association extends Relation {
 	private String libelle;
 	
 	
-	public Association(Classe classeDep, Classe classeDest, String type, String multipliciteIn, String multipliciteOut, String libelle) {
-		super(type);
+	public Association(Classe classeDep, Classe classeDest, String multipliciteIn, String multipliciteOut, String libelle) {
+		super("association");
 		this.classeDep = classeDep;
 		this.classeDest = classeDest;
 		this.multipliciteIn = multipliciteIn;

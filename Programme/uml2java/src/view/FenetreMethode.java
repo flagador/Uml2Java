@@ -13,6 +13,10 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import model.Attribut;
 import model.Classe;
+import model.Methode;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class FenetreMethode extends Stage {
 
@@ -52,7 +56,6 @@ public class FenetreMethode extends Stage {
     public FenetreMethode(FenetreNouvelleClasse f, Classe c) {
     	this.fenetreNouvelleClasse = f;
     	this.classe = c;
-    	this.methode = new model.Methode();
     	this.setTitle("Methode");
 
         Scene scene = new Scene(init());
@@ -162,14 +165,16 @@ public class FenetreMethode extends Stage {
 	    
 	    
 	    public void ajoutermethode() {
+			ArrayList<Attribut> atts = new ArrayList();
+
 	        if (estValide()) {
 	        	
-	        	methode.setNom(textFieldNom.getText());
-	        	methode.setVisibilite(comboBoxVisibilite.getValue());
-	        	methode.setType(comboBoxType.getValue());
+//	        	methode.setNom(textFieldNom.getText());
+//	        	methode.setVisibilite(comboBoxVisibilite.getValue());
+//	        	methode.setType(comboBoxType.getValue());
 	        	//methode.setAttributs(comboBoxAttribut.getValue());
 	        	
-	        	
+	        	methode = new Methode(textFieldNom.getText(),comboBoxVisibilite.getValue(),comboBoxType.getValue(),atts,"");
 	        	
 	        	fenetreNouvelleClasse.itemsM = FXCollections.observableArrayList(methode);
 	            
