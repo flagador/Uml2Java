@@ -61,7 +61,7 @@ public class Classe {
 
     public void ajoutAttribut(Attribut a) {
 
-        attributs.add(a);
+        this.attributs.add(a);
 
     }
 
@@ -107,12 +107,14 @@ public class Classe {
         String getSet = "";
         String methodes = "";
 		
-        
-        for ( int i = 0; i <this.relations.size(); i++) {
-        	if (this.relations.get(i).getType().equals("association")) {
-        		this.relations.get(i).toJava();
-        	}
+        if(relations.size()!=0) {
+            for ( int i = 0; i <this.relations.size(); i++) {
+            	if (this.relations.get(i).getType().equals("association")) {
+            		this.relations.get(i).toJava();
+            	}
+            }
         }
+
 	/*	for (int i = 0; i < properties.size(); i++) {
 			if(properties.get(i) == ClassProperty.ABSTRACT)
 				entete += ClassProperty.ABSTRACT.javaText();
@@ -160,6 +162,7 @@ public class Classe {
             methodes += this.methodes.get(i).toJava();
         }
         trad += entete + attributsJava + constructeur + getSet + methodes;
+        trad += "}";
         return trad;
     }
 
@@ -176,7 +179,7 @@ public class Classe {
         Voiture.ajoutAttribut(Moteur);
         Voiture.ajoutAttribut(Volant);
         Voiture.ajoutMethode(puissanceFiscale);
-        System.out.println(Voiture.traductionJava() + "}");
-        System.out.println(Porsche911GT3RS.traductionJava() + "}");
+        System.out.println(Voiture.traductionJava());
+        System.out.println(Porsche911GT3RS.traductionJava());
     }
 }
