@@ -1,0 +1,56 @@
+#classe {
+	-fx-background-color: #DDE5FF;
+	-fx-border-style: solid;
+	-fx-border-width: 1;
+	-fx-border-color: red;
+}
+
+@font-face {
+    -fx-font-family: 'MaPolice';
+    -fx-src: url('Robot-Thin.ttf');
+}
+
+#erreur {
+	-fx-text-fill: red;
+}
+
+.button, .button:hover, .button:armed, .button:focused {
+	-fx-background-color: #77aa77;
+	-fx-text-fill : #ffffff;
+	-fx-margin : 5px;
+}
+
+.Uml2Java {
+	-fx-font-family: 'MaPolice';
+}
+
+.margin {
+	-fx-margin-right : 20px;
+}
+
+#annuler {
+	-fx-background-color: #A80505;
+	-fx-text-fill : #ffffff;
+}
+
+#supprimer {
+	-fx-background-color: #E83400;
+	-fx-text-fill : #ffffff;
+}
+
+#vBoxAttributsClasse {
+	-fx-margin-right : 20px;
+}
+
+#menuColor {
+	-fx-background-color: #ffffff;
+	-fx-border: none;
+}
+
+#javaMenu {
+	-fx-background-color: #cccccc;
+}
+
+#rootColor {
+	-fx-background-color: #bbeebb;
+}

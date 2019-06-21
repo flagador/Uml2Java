@@ -1,31 +1,40 @@
 package view;
 
-import java.util.ArrayList;
 
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import model.Attribut;
+import model.Classe;
 
 public class FenetreMethode extends Stage {
 
 	private model.Methode methode;
+	private Classe classe;
 	private FenetreNouvelleClasse fenetreNouvelleClasse;
 	
     private Label nommethode = new Label("Nom : ");
     private Label typemethode = new Label("Type : ");
     private Label visibilitemethode = new Label("Visibilite : ");
-    private Label attributmethode = new Label("Attributs : ");
+    private Label parametremethode = new Label("Parametre : ");
 
     private TextField textFieldNom = new TextField();
     private ComboBox<String> comboBoxType = new ComboBox<>();
     private ComboBox<String> comboBoxVisibilite = new ComboBox<>();
     private ComboBox<model.Attribut> comboBoxAttribut = new ComboBox<>();
+    
 
+    private Button parametre = new Button("Nouveau");
+    private ListView<Attribut> parametreList = new ListView<Attribut>();
+    ObservableList <Attribut> items;
+    
     private HBox nom = new HBox();
     private HBox type = new HBox();
     private HBox visibilite = new HBox();
@@ -35,13 +44,14 @@ public class FenetreMethode extends Stage {
 
     private String[] visibilites = {"public", "private", "protected"};
     private String[] types = {"float", "boolean", "String", "int", "double", "void"};
-    private model.Attribut[] attributs = new model.Attribut[20];
+    private model.Attribut[] parametres = new model.Attribut[20];
     		
     private Button confirmer = new Button("Confirmer");
     private Button annuler   = new Button("Annuler");
     
-    public FenetreMethode(FenetreNouvelleClasse f) {
+    public FenetreMethode(FenetreNouvelleClasse f, Classe c) {
     	this.fenetreNouvelleClasse = f;
+    	this.classe = c;
     	this.methode = new model.Methode();
     	this.setTitle("Methode");
 
@@ -59,11 +69,31 @@ public class FenetreMethode extends Stage {
 	public void setMethode(model.Methode methode) {
 		this.methode = methode;
 	}
+	
+	public ListView<Attribut> getParametreList() {
+		return parametreList;
+	}
+
+	public void setParametreList(ListView<Attribut> parametreList) {
+		this.parametreList = parametreList;
+	}
 
 
 	private Parent init() {
         VBox root = new VBox();
 
+        Font police = Font.loadFont(getClass().getResourceAsStream("Comfortaa-Regular.ttf"), 12);
+        Font police2 = Font.loadFont(getClass().getResourceAsStream("Comfortaa-Regular.ttf"), 10);
+        nommethode.setFont(police);
+        typemethode.setFont(police);
+        visibilitemethode.setFont(police);
+        parametremethode.setFont(police);
+        annuler.setFont(police2);
+        confirmer.setFont(police2);
+        parametre.setFont(police2);
+        
+        annuler.getStyleClass().add("annuler");
+        
         root.setPadding(new Insets(5));
         nom.setPadding(new Insets(2.5));
         type.setPadding(new Insets(2.5));
@@ -75,19 +105,19 @@ public class FenetreMethode extends Stage {
         
         for(i = 0; i < fenetreNouvelleClasse.getAttributsList().getItems().size(); i++) {
         	
-			attributs[i] = fenetreNouvelleClasse.getAttributsList().getItems().get(i);
+			parametres[i] = fenetreNouvelleClasse.getAttributsList().getItems().get(i);
 			
 		}
         
         
         comboBoxType.getItems().addAll(types);
         comboBoxVisibilite.getItems().addAll(visibilites);
-        comboBoxAttribut.getItems().addAll(attributs);
+        comboBoxAttribut.getItems().addAll(parametres);
 
         nom.getChildren().addAll(nommethode, textFieldNom);
         type.getChildren().addAll(typemethode, comboBoxType);
         visibilite.getChildren().addAll(visibilitemethode, comboBoxVisibilite);
-        attribut.getChildren().addAll(attributmethode, comboBoxAttribut);
+        attribut.getChildren().addAll(parametremethode, comboBoxAttribut, parametre);
 
         corps.getChildren().addAll(nom, type, visibilite, attribut);
         
@@ -100,6 +130,10 @@ public class FenetreMethode extends Stage {
 	
 	 private void initEvents() {
 	    	
+		 	parametre.setOnAction(event -> {
+		 		newAttribut();
+		 	});
+		 
 	    	annuler.setOnAction(event -> {
 	            annulermethode();
 	        });
@@ -110,20 +144,32 @@ public class FenetreMethode extends Stage {
 	    	
 	    }
 	    
+	 
+	 	public void newAttribut() {
+	 		
+	 		FenetreParametre fenetreParametre = new FenetreParametre(this, methode);
+            
+            fenetreParametre.show();
+	 		
+	 	}
+	 
 	    
-	    private void annulermethode() {
+	    public void annulermethode() {
 	    	
 	    	close();
 	    	
 	    }
 	    
 	    
-	    private void ajoutermethode() {
+	    public void ajoutermethode() {
 	        if (estValide()) {
 	        	
 	        	methode.setNom(textFieldNom.getText());
 	        	methode.setVisibilite(comboBoxVisibilite.getValue());
 	        	methode.setType(comboBoxType.getValue());
+	        	//methode.setAttributs(comboBoxAttribut.getValue());
+	        	
+	        	
 	        	
 	        	fenetreNouvelleClasse.itemsM = FXCollections.observableArrayList(methode);
 	            
@@ -137,7 +183,47 @@ public class FenetreMethode extends Stage {
 	    }
 	    
 	    
-	    private boolean estValide() {
+	    public TextField getTextFieldNom() {
+			return textFieldNom;
+		}
+
+
+		public void setTextFieldNom(TextField textFieldNom) {
+			this.textFieldNom = textFieldNom;
+		}
+
+
+		public ComboBox<String> getComboBoxType() {
+			return comboBoxType;
+		}
+
+
+		public void setComboBoxType(ComboBox<String> comboBoxType) {
+			this.comboBoxType = comboBoxType;
+		}
+
+
+		public ComboBox<String> getComboBoxVisibilite() {
+			return comboBoxVisibilite;
+		}
+
+
+		public void setComboBoxVisibilite(ComboBox<String> comboBoxVisibilite) {
+			this.comboBoxVisibilite = comboBoxVisibilite;
+		}
+
+
+		public ComboBox<model.Attribut> getComboBoxAttribut() {
+			return comboBoxAttribut;
+		}
+
+
+		public void setComboBoxAttribut(ComboBox<model.Attribut> comboBoxAttribut) {
+			this.comboBoxAttribut = comboBoxAttribut;
+		}
+
+
+		private boolean estValide() {
 	        if (textFieldNom.getText() == null || textFieldNom.getText().isEmpty()) {
 	            return false;
 	        }

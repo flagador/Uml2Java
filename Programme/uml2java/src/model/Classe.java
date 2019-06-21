@@ -53,6 +53,12 @@ public class Classe {
     public void setRelations(ArrayList<Relation> relations) {
         this.relations = relations;
     }
+    
+    public String toString() {
+    	
+    	return "Classe : " + this.nom;
+    	
+    }
 
     // Methodes ajout
 

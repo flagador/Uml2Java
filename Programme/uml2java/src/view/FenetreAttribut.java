@@ -7,12 +7,15 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import model.Classe;
 
 public class FenetreAttribut extends Stage {
 	
 	private model.Attribut attribut;
 	private FenetreNouvelleClasse fenetreNouvelleClasse;
+	private Classe classe;
 	
     private Label nomAttribut        = new Label("Nom : ");
     private Label typeAttribut       = new Label("Type : ");
@@ -34,8 +37,9 @@ public class FenetreAttribut extends Stage {
     private Button confirmer = new Button("Confirmer");
     private Button annuler   = new Button("Annuler");
 
-    public FenetreAttribut(FenetreNouvelleClasse f) {
+    public FenetreAttribut(FenetreNouvelleClasse f, Classe c) {
     	this.fenetreNouvelleClasse = f;
+    	this.classe = c;
     	this.attribut = new model.Attribut();
         this.setTitle("Attribut");
 
@@ -59,7 +63,15 @@ public class FenetreAttribut extends Stage {
     	
         VBox root = new VBox();
         
-        annuler.setId("annuler");
+        Font police = Font.loadFont(getClass().getResourceAsStream("Comfortaa-Regular.ttf"), 12);
+        Font police2 = Font.loadFont(getClass().getResourceAsStream("Comfortaa-Regular.ttf"), 10);
+        nomAttribut.setFont(police);
+        typeAttribut.setFont(police);
+        visibiliteAttribut.setFont(police);
+        annuler.setFont(police2);
+        confirmer.setFont(police2);
+        
+        annuler.getStyleClass().add("annuler");
         
         root.setPadding(new Insets(5));
         nom.setPadding(new Insets(2.5));
@@ -129,4 +141,36 @@ public class FenetreAttribut extends Stage {
 
         return true;
     }
+    
+    
+    public TextField getTextFieldNom() {
+		return textFieldNom;
+	}
+
+
+	public void setTextFieldNom(TextField textFieldNom) {
+		this.textFieldNom = textFieldNom;
+	}
+
+
+	public ComboBox<String> getComboBoxType() {
+		return comboBoxType;
+	}
+
+
+	public void setComboBoxType(ComboBox<String> comboBoxType) {
+		this.comboBoxType = comboBoxType;
+	}
+
+
+	public ComboBox<String> getComboBoxVisibilite() {
+		return comboBoxVisibilite;
+	}
+
+
+	public void setComboBoxVisibilite(ComboBox<String> comboBoxVisibilite) {
+		this.comboBoxVisibilite = comboBoxVisibilite;
+	}
+
+
 }
