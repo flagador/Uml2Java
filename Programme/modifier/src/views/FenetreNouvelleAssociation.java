@@ -17,18 +17,17 @@ import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import model.Association;
+import models.Association;
 import models.Attribut;
 import models.Classe;
 import models.Methode;
-import view.Uml2Java;
 
 public class FenetreNouvelleAssociation extends Stage {
 
 	private Association association;
 	private FenetrePrincipal uml;
 	
-	private model.Classe[] comboClasse = new model.Classe[20];
+	private models.Classe[] comboClasse = new models.Classe[20];
 	
     private Label erreurLabel = new Label();
 
@@ -37,11 +36,11 @@ public class FenetreNouvelleAssociation extends Stage {
     private TextField nomAssociationTextArea = new TextField();
 
     private Label classe1Label = new Label("Classe 1 :");
-    private ComboBox<model.Classe> classe1 = new ComboBox();
+    private ComboBox<models.Classe> classe1 = new ComboBox();
     
 
     private Label classe2Label = new Label("Classe 2 :");
-    private ComboBox<model.Classe> classe2 = new ComboBox();
+    private ComboBox<models.Classe> classe2 = new ComboBox();
     
     private ButtonBar buttonBar = new ButtonBar();
     private Button confirmer = new Button("Confirmer");
@@ -127,9 +126,9 @@ public class FenetreNouvelleAssociation extends Stage {
     private void creerAssociation() {
         if (estValide()) {
         	
-        	model.Classe c1, c2;
-        	c1 = new model.Classe();
-        	c2 = new model.Classe();
+        	models.Classe c1, c2;
+        	c1 = new models.Classe();
+        	c2 = new models.Classe();
         	
         	c1 = classe1.getSelectionModel().getSelectedItem();
         	c2 = classe2.getSelectionModel().getSelectedItem();
@@ -139,9 +138,9 @@ public class FenetreNouvelleAssociation extends Stage {
         	
             association = new Association(c1, c2, "Association", "af", "af", lib);
             association.setLibelle(nomAssociationTextArea.getText());
-            for (model.Classe classe : classe1.getItems())
+            for (models.Classe classe : classe1.getItems())
                 classe.ajoutRelation(association);
-            for (model.Classe classe2 : classe2.getItems())
+            for (models.Classe classe2 : classe2.getItems())
                 classe2.ajoutRelation(association);
             this.close();
         }

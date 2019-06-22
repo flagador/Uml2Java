@@ -261,6 +261,7 @@ public class FenetreNouvelleClasse extends Stage {
             Classe_ classe_ = new Classe_(classe);
             zoneUML.getChildren().add(classe_);
             
+            
             uml.items = FXCollections.observableArrayList(classe);
             
         	uml.getClasseList().getSelectionModel().setSelectionMode(SelectionMode.SINGLE);

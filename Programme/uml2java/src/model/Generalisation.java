@@ -38,20 +38,26 @@ public class Generalisation extends Relation {
 		String generalisation = "";
 		
 		generalisation += "super(";
-		generalisation += this.parent.getAttributs().get(0).getNom();
-        for (int i = 1; i < this.parent.getAttributs().size(); i++) { 
-        	generalisation += ", " +this.parent.getAttributs().get(i).getNom();
-        }
+		if(this.parent.getAttributs().size()!=0) {
+			generalisation += this.parent.getAttributs().get(0).getNom();
+	        for (int i = 1; i < this.parent.getAttributs().size(); i++) { 
+	        	generalisation += ", " +this.parent.getAttributs().get(i).getNom();
+	        }
+		}
+
         generalisation+=");\r\n";
 		return generalisation;
 	}
 	
 	public String traductionAttributsConstructeur() {
 		String generalisation = "";
-	 		generalisation += this.parent.getAttributs().get(0).getType() + " " + this.parent.getAttributs().get(0).getNom();
-        for (int i = 1; i < this.parent.getAttributs().size(); i++) { 
-        	generalisation += ", " + this.parent.getAttributs().get(i).getType() + " " + this.parent.getAttributs().get(i).getNom();
-        }
+		if(this.parent.getAttributs().size()!=0) {
+			generalisation += this.parent.getAttributs().get(0).getType() + " " + this.parent.getAttributs().get(0).getNom();
+	        for (int i = 1; i < this.parent.getAttributs().size(); i++) { 
+	        	generalisation += ", " + this.parent.getAttributs().get(i).getType() + " " + this.parent.getAttributs().get(i).getNom();
+	        }	
+		}
+	 		
 		return generalisation;
 	}
 

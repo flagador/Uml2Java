@@ -7,15 +7,22 @@ public class Application {
 	public static Application APP = new Application();
 	private List<Classe> classes;
 	private List<Association> associations;
+	private List<Generalisation> generalisations;
 	
 	
 	private Application() {
 		this.classes = new ArrayList<>();
 		this.associations = new ArrayList<>(); 
+		this.generalisations = new ArrayList<>();
 	}
 	
 	public void ajoutAssociation(Association a){
 		associations.add(a);
+	}
+	
+	public void ajoutGeneralisation(Generalisation g) {
+		generalisations.add(g);
+		
 	}
 	
 	public void ajoutClasse(Classe c){
@@ -34,9 +41,20 @@ public class Application {
 			}
 			
 		});
-		
-	
-		
 		return res;
 	}
+	public List<Generalisation> trouverGeneralisations(Classe c){
+		List<Generalisation> res = new ArrayList<>();
+		
+		generalisations.forEach(g -> {
+			if(g.getEnfant().equals(c)) {
+				res.add(g);
+			}
+			
+		});
+		return res;
+	}
+	
+
+
 }

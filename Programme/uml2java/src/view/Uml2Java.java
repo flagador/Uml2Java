@@ -18,8 +18,6 @@ import view.controls.MenuItem_;
 public class Uml2Java extends Stage {
 
     private MenuBar menuBar = new MenuBar();
-    
-    private ArrayList<Fleche> fleches = new ArrayList<>();
 
     private Menu      ficherMenu  = new Menu("Fichier");
     private MenuItem_ nouveau     = new MenuItem_("Nouveau", new KeyCodeCombination(KeyCode.N, KeyCombination.CONTROL_DOWN));
@@ -124,6 +122,9 @@ public class Uml2Java extends Stage {
             nouvelleAssociation();
             //System.out.print("InitEvent");
         });
+        nouvGene.setOnMouseClicked(e -> {
+        	nouvelleGeneralisation();
+        });
     }
 
     private void nouvelleAssociation() {
@@ -140,9 +141,20 @@ public class Uml2Java extends Stage {
         
     }
     
-    public void ajoutFleche(Fleche f) {
-    	this.fleches.add(f);
+    private void nouvelleGeneralisation() {
+        // Execute lors de la creation d'une nouvelle classe
+    	//System.out.println("nouvelleClasse");
+        FenetreGeneralisation fenetreGeneralisation = new FenetreGeneralisation(this);
+        //fenetreAssociation.setZoneUML(umlPane);
+        //fenetreNouvelleClasse.setZoneJava(javaCode);
+        //javaCode = new TextArea(fenetreNouvelleClasse.getTextJ().setText(trad(getClasse())));
+        
+        //this.printAllClasses();
+        
+        fenetreGeneralisation.show();
+        
     }
+    
     
     public void printAllClasses() {
     	String s = "";
