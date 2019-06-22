@@ -48,8 +48,8 @@ public class FenetrePrincipal extends Stage {
 
     private ContextMenu contextMenu = new ContextMenu();
     
-    private ListView<model.Classe> classeList = new ListView<Classe>();
-    ObservableList <model.Classe> items;
+    private ListView<models.Classe> classeList = new ListView<models.Classe>();
+    ObservableList <models.Classe> items;
 
     private Button nouvClasse = new Button("Classe");
     private Button nouvAsso = new Button("Association");
@@ -60,7 +60,7 @@ public class FenetrePrincipal extends Stage {
         this.setTitle("Uml2Java");
         this.setHeight(700.0);
         this.setWidth(800.0);
-        this.setResizable(false);
+        this.setResizable(true);
 
         this.setScene(new Scene(iniControls()));
         initEvents();
@@ -128,9 +128,6 @@ public class FenetrePrincipal extends Stage {
         	nouvelleAssociation();
         });
 
-        nouvAsso.setOnAction(event -> {
-        });
-
     }
 
     /**
@@ -161,18 +158,17 @@ public class FenetrePrincipal extends Stage {
     
     private void nouvelleAssociation() {
         
-        FenetreNouvelleAssociation fenetreAssociation = new FenetreNouvelleAssociation();
-        
-        fenetreAssociation.show();
+        FenetreNouvelleAssociation fenetreAssociation = new FenetreNouvelleAssociation(this);
+        fenetreAssociation.showAndWait();
         
     }
     
     
-    public ListView<model.Classe> getClasseList() {
+    public ListView<models.Classe> getClasseList() {
 		return classeList;
 	}
 
-	public void setClasseList(ListView<model.Classe> classeList) {
+	public void setClasseList(ListView<models.Classe> classeList) {
 		this.classeList = classeList;
 	}
     

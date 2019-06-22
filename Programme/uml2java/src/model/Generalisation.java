@@ -64,9 +64,5 @@ public class Generalisation extends Relation {
 	public void ajoutGeneralisation() {
 		this.getParent().ajoutRelation(this);
 		this.getEnfant().ajoutRelation(this);
-	}
-	
-	
-	
-	
+	}	
 }
