@@ -1,5 +1,7 @@
 package view;
 
+import java.util.ArrayList;
+
 import javafx.collections.ObservableList;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -16,6 +18,8 @@ import view.controls.MenuItem_;
 public class Uml2Java extends Stage {
 
     private MenuBar menuBar = new MenuBar();
+    
+    private ArrayList<Fleche> fleches = new ArrayList<>();
 
     private Menu      ficherMenu  = new Menu("Fichier");
     private MenuItem_ nouveau     = new MenuItem_("Nouveau", new KeyCodeCombination(KeyCode.N, KeyCombination.CONTROL_DOWN));
@@ -130,18 +134,14 @@ public class Uml2Java extends Stage {
         //fenetreNouvelleClasse.setZoneJava(javaCode);
         //javaCode = new TextArea(fenetreNouvelleClasse.getTextJ().setText(trad(getClasse())));
         
-        try {
-        	
-        	this.javaCode = new TextArea(fenetreAssociation.trad(fenetreAssociation.getClasse()));
-        	
-        } catch (Exception e) {
-        	
-        	System.out.println("Exception");
-        	
-        }
+        //this.printAllClasses();
         
         fenetreAssociation.show();
         
+    }
+    
+    public void ajoutFleche(Fleche f) {
+    	this.fleches.add(f);
     }
     
     public void printAllClasses() {

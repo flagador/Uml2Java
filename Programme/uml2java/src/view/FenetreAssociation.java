@@ -23,7 +23,6 @@ public class FenetreAssociation extends Stage {
 
     private Pane zoneUML;
 	private Uml2Java uml;
-    private Classe classe;
     private Association association;
 
 	private HBox hBoxNomAssociation = new HBox();
@@ -45,7 +44,6 @@ public class FenetreAssociation extends Stage {
     private Button annuler = new Button("Annuler");
 
     public FenetreAssociation(Uml2Java uml) {
-        this.classe = new Classe("temp");
         this.uml = uml;
         this.setTitle("Association");
         this.setResizable(false);
@@ -131,12 +129,15 @@ public class FenetreAssociation extends Stage {
         	switch(mult.getSelectionModel().getSelectedItem()) {
     			case("1 a n"):
     				association = new Association(c,c2,"1","n",classeTextArea.getText());
+    				association.unAn(c.getNom(), c2.getNom());
     			break;
     			case("n a 1"):
-    				association = new Association(c,c2,"n","1",classeTextArea.getText());
+    				association = new Association(c2,c,"n","1",classeTextArea.getText());
+    				association.unAn(c2.getNom(), c.getNom());
     			break;
     			default:
     				association = new Association(c,c2,"1","1",classeTextArea.getText());
+    				association.unAun(c.getNom(), c2.getNom());
     			break;
         	}
         	
@@ -180,16 +181,6 @@ public class FenetreAssociation extends Stage {
     	return classe.traductionJava();
     	
     }
-
-    public Classe getClasse() {
-		return classe;
-	}
-
-
-	public void setClasse(Classe classe) {
-		this.classe = classe;
-	}
-
 
 	private void annulerClasse() {
         close();

@@ -64,10 +64,10 @@ public class Association extends Relation {
     
 	public void unAun(String nomObjetDest, String nomObjetDep){
 		
-		Attribut a = new Attribut(nomObjetDest, this.classeDest.getNom(), "public");
+		Attribut a = new Attribut(nomObjetDest.toLowerCase(), this.classeDest.getNom(), "public");
 		this.classeDep.ajoutAttribut(a);
 		
-		Attribut b = new Attribut(nomObjetDep, this.classeDep.getNom(), "public");
+		Attribut b = new Attribut(nomObjetDep.toLowerCase(), this.classeDep.getNom(), "public");
 		this.classeDest.ajoutAttribut(b);
 		
 	}
@@ -75,11 +75,11 @@ public class Association extends Relation {
 	public void unAn(String nomObjetDest, String nomObjetDep) {
 		
 		String arraylist = "ArrayList<"+this.classeDest.getNom()+">";
-		Attribut a = new Attribut(nomObjetDest, arraylist, "public");
+		Attribut a = new Attribut(nomObjetDest.toLowerCase(), arraylist, "public");
 		
 		this.classeDep.ajoutAttribut(a);
 		
-		Attribut b = new Attribut(nomObjetDep, this.classeDep.getNom(), "public");
+		Attribut b = new Attribut(nomObjetDep.toLowerCase(), this.classeDep.getNom(), "public");
 		this.classeDest.ajoutAttribut(b);
 		
 		
@@ -87,14 +87,14 @@ public class Association extends Relation {
 	
 	public void toJava() {
 		if(multipliciteIn == "1" && multipliciteOut == "1") {
-			unAun(this.getClasseDest().getNom(), this.getClasseDep().getNom());
+			//unAun(this.getClasseDest().getNom(), this.getClasseDep().getNom());
 		}
 		else if(multipliciteIn == "1" && multipliciteOut == "n") {
-			unAn(this.getClasseDest().getNom(), this.getClasseDep().getNom());
+			//unAn(this.getClasseDest().getNom(), this.getClasseDep().getNom());
 		}
 	}
 	public void ajoutAssociation() {
-		this.getClasseDep().ajoutRelation(this);
+		//this.getClasseDep().ajoutRelation(this);
 	}
 	
 	
