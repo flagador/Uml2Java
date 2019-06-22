@@ -9,6 +9,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import model.Application;
 import model.Classe;
 import view.controls.MenuItem_;
 
@@ -141,6 +142,14 @@ public class Uml2Java extends Stage {
         
         fenetreAssociation.show();
         
+    }
+    
+    public void printAllClasses() {
+    	String s = "";
+    	for (Classe c : Application.APP.getClasses()) {
+    		s+= c.traductionJava();
+    	}
+    	this.getJavaCode().setText(s);
     }
     
     

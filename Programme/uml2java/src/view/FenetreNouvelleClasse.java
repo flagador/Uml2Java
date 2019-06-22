@@ -13,6 +13,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.Application;
 import model.Attribut;
 import model.Classe;
 import view.controls.Classe_;
@@ -240,8 +241,9 @@ public class FenetreNouvelleClasse extends Stage {
     			
     		}
 
-    		this.uml.getJavaCode().appendText(this.trad(classe));
-
+    		//this.uml.getJavaCode().appendText(this.trad(classe));
+            this.uml.printAllClasses();
+            
         });
     }
 
@@ -264,6 +266,8 @@ public class FenetreNouvelleClasse extends Stage {
         	uml.getClasseList().getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         	
         	uml.getClasseList().getItems().add(classe);
+        	
+        	Application.APP.ajoutClasse(classe);
             
 //            zoneJava.setText(classe.traductionJava());
 //            System.out.println(zoneJava);

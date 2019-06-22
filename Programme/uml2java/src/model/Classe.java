@@ -130,7 +130,7 @@ public class Classe {
         for (int i = 0; i < this.attributs.size(); i++) {
             attributsJava += this.getAttributs().get(i).toJava() + "\r\n";
         }
-        constructeur = "Public " + this.nom + "(";
+        constructeur = "public " + this.nom + "(";
 
         for (int i = 0; i < this.attributs.size(); i++) {
             constructeur += this.attributs.get(i).getType() + " " + this.attributs.get(i).getNom();
@@ -163,7 +163,12 @@ public class Classe {
         }
         trad += entete + attributsJava + constructeur + getSet + methodes;
         trad += "}";
+        
+        System.out.println(trad);
+        
         return trad;
+        
+        
     }
 
     public static void main(String args[]) {

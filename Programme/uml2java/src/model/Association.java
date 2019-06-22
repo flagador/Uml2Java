@@ -87,10 +87,10 @@ public class Association extends Relation {
 	
 	public void toJava() {
 		if(multipliciteIn == "1" && multipliciteOut == "1") {
-			unAun(this.getClasseDest().getNom(), this.getClasseDest().getNom());
+			unAun(this.getClasseDest().getNom(), this.getClasseDep().getNom());
 		}
 		else if(multipliciteIn == "1" && multipliciteOut == "n") {
-			unAn(this.getClasseDest().getNom(), this.getClasseDest().getNom());
+			unAn(this.getClasseDest().getNom(), this.getClasseDep().getNom());
 		}
 	}
 	public void ajoutAssociation() {

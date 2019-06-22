@@ -13,6 +13,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.Application;
 import model.Association;
 import model.Attribut;
 import model.Classe;
@@ -34,6 +35,8 @@ public class FenetreAssociation extends Stage {
     
     private VBox vBoxAssociation2 = new VBox();
     private ComboBox<Classe> classe2 = new ComboBox();
+    
+    private ComboBox<String> mult = new ComboBox();
 
     private Classe[] comboClasse = new Classe[20];
     
@@ -77,6 +80,7 @@ public class FenetreAssociation extends Stage {
 
         classe1.setPrefWidth(170);
         classe2.setPrefWidth(170);
+        mult.setPrefWidth(150);
         
         int i = 0;
         
@@ -88,11 +92,17 @@ public class FenetreAssociation extends Stage {
         
         classe1.getItems().addAll(comboClasse);
         classe2.getItems().addAll(comboClasse);
+        String[] multStrings = new String[3];
+        multStrings[0] = "1 a 1";
+        multStrings[1] = "1 a n";
+        multStrings[2] = "n a 1";
+        mult.getItems().addAll(multStrings);
         
         hBoxNomAssociation.getChildren().addAll(associationLabel, classeTextArea);
 
         vBoxAssociation.getChildren().addAll(classe1);
         vBoxAssociation2.getChildren().addAll(classe2);
+        vBoxAssociation2.getChildren().add(mult);
 
         buttonBar.getButtons().addAll(confirmer, annuler);
 
@@ -117,7 +127,21 @@ public class FenetreAssociation extends Stage {
         	
         	c = classe1.getSelectionModel().getSelectedItem();
         	c2= classe2.getSelectionModel().getSelectedItem();
-        	association = new Association(c,c2,"1","1","Libellé");
+        	
+        	switch(mult.getSelectionModel().getSelectedItem()) {
+    			case("1 a n"):
+    				association = new Association(c,c2,"1","n",classeTextArea.getText());
+    			break;
+    			case("n a 1"):
+    				association = new Association(c,c2,"n","1",classeTextArea.getText());
+    			break;
+    			default:
+    				association = new Association(c,c2,"1","1",classeTextArea.getText());
+    			break;
+        	}
+        	
+        
+        	
 
         	c.ajoutRelation(association);
         	c2.ajoutRelation(association);
@@ -126,7 +150,10 @@ public class FenetreAssociation extends Stage {
         	association.setClasseDest(c2);
 
         	association.ajoutAssociation();
+        	Application.APP.ajoutAssociation(association);
+        	this.uml.printAllClasses();
             ajouterClasse();
+            
         });
     }
 
