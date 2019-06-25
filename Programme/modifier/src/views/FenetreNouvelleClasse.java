@@ -12,6 +12,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import models.Application;
 import models.Attribut;
 import models.Classe;
 import models.Methode;
@@ -21,6 +22,8 @@ public class FenetreNouvelleClasse extends Stage {
     private Classe classe;
 
     private Label erreurLabel = new Label();
+    
+    private FenetrePrincipal fp;
 
     private HBox hBoxNomClasse = new HBox();
     private Label nomClasseLabel = new Label("Nom de la classe :");
@@ -177,12 +180,13 @@ public class FenetreNouvelleClasse extends Stage {
      */
     private void creerClasse() {
         if (estValide()) {
-            classe = new Classe();
-            classe.setNom(nomClasseTextArea.getText());
+            classe = new Classe(nomClasseTextArea.getText());
             for (Attribut attribut : attributsList.getItems())
                 classe.getAttributs().add(attribut);
             for (Methode methode : methodesList.getItems())
                 classe.getMethodes().add(methode);
+            models.Application.APP.ajoutClasse(classe);
+            this.fp.printAllClasses();
             this.close();
         }
     }

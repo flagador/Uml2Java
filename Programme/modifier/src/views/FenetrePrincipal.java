@@ -11,11 +11,12 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import model.Classe;
+import models.Application;
+import models.Classe;
 import views.controls.ClasseGraphique;
 import views.controls.MenuItem;
 import ressources.fonts.*;
-import view.FenetreAssociation;
+import views.FenetreNouvelleAssociation;
 
 public class FenetrePrincipal extends Stage {
 
@@ -163,8 +164,20 @@ public class FenetrePrincipal extends Stage {
         
     }
     
+    public void printAllClasses() {
+    	String s = "";
+    	for (Classe c : models.Application.APP.getClasses()) {
+    		s+= c.traductionJava();
+    	}
+    	this.getJavaCode().setText(s);
+    }
     
-    public ListView<models.Classe> getClasseList() {
+    
+    private TextArea getJavaCode() {
+		return this.javaCode;
+	}
+
+	public ListView<models.Classe> getClasseList() {
 		return classeList;
 	}
 

@@ -15,14 +15,12 @@ import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-<<<<<<< HEAD
+
 import models.Association;
 import models.Attribut;
 import models.Classe;
 import models.Methode;
-=======
 
->>>>>>> 1e4ef48e47d020b99b93d09ebbda319e14811abf
 
 public class FenetreNouvelleAssociation extends Stage {
 
@@ -132,11 +130,10 @@ public class FenetreNouvelleAssociation extends Stage {
         if (estValide()) {
         	
         	models.Classe c1, c2;
-<<<<<<< HEAD
+
         	c1 = new models.Classe();
         	c2 = new models.Classe();
-=======
->>>>>>> 1e4ef48e47d020b99b93d09ebbda319e14811abf
+
         	
         	c1 = classe1.getSelectionModel().getSelectedItem();
         	c2 = classe2.getSelectionModel().getSelectedItem();
